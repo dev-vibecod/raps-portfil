@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080a12;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: var(--bg);
+  color: #e7e9f5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient lavender glows layered behind the page content. */
+.bg-aurora::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(111, 120, 245, 0.18), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 20%, rgba(139, 147, 255, 0.12), transparent 55%),
+    radial-gradient(40rem 30rem at 50% 110%, rgba(169, 176, 255, 0.1), transparent 60%);
+}
+
+.bg-aurora::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 40%, transparent 90%);
+}
+
+/* Glass surface used across cards and the navbar. */
+.glass {
+  background: linear-gradient(180deg, rgba(23, 28, 43, 0.7), rgba(12, 15, 26, 0.55));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-hover {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-hover:hover {
+  border-color: rgba(139, 147, 255, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8), 0 0 40px -20px rgba(139, 147, 255, 0.5);
+}
+
+/* Gradient text accent. */
+.text-gradient {
+  background: linear-gradient(120deg, #ffffff 30%, #a9b0ff 70%, #6f78f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8b93ff;
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #080a12;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3047;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6f78f5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
