@@ -54,6 +54,20 @@ archetypes, auto-scaled by `ScaledMockup`. Each is labelled "representative".
   back to a placeholder.
 - After the domain is live, submit the sitemap in Google Search Console.
 
+## AI assistant (Groq)
+
+A floating chat assistant (`components/ChatWidget.js`) answers **only** questions
+about Rafif. It calls a server route `app/api/chat/route.js` that proxies Groq
+(model `openai/gpt-oss-120b`) — the API key stays server-side and is never sent
+to the browser. The system prompt + knowledge base (`lib/aiKnowledge.js`, built
+from the same site content) restrict scope and refuse off-topic questions.
+
+- **Env var (required for the assistant):** `GROQ_API_KEY`. Locally it lives in
+  `.env.local` (git-ignored). On Vercel, add it under Project → Settings →
+  Environment Variables. Without it, the route returns 503 (the rest of the
+  site is unaffected).
+- Rotate the key if it was ever shared in plaintext.
+
 ## Deploy (Vercel)
 
 Push to the connected repo; Vercel builds with no extra config. Add the

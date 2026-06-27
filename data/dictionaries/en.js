@@ -190,6 +190,16 @@ const en = {
     linkLabel: "Download CV",
   },
 
+  chat: {
+    title: "Ask about Rafif",
+    subtitle: "AI assistant",
+    greeting: "Hi! I'm Rafif's AI assistant. Ask me about his experience, projects, or the services he offers.",
+    placeholder: "Ask about experience, projects, services…",
+    error: "Something went wrong. Please try again, or contact Rafif directly.",
+    disclaimer: "AI · only answers about Rafif",
+    suggestions: ["What services does Rafif offer?", "Tell me about OprexDuit", "His experience with AI / LLM?"],
+  },
+
   footer: {
     rights: "All rights reserved.",
     note: "Code repositories currently private; live demos available on request.",

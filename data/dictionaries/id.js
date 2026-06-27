@@ -188,6 +188,16 @@ const id = {
     linkLabel: "Unduh CV",
   },
 
+  chat: {
+    title: "Tanya tentang Rafif",
+    subtitle: "Asisten AI",
+    greeting: "Hai! Saya asisten AI Rafif. Tanya saya soal pengalaman, proyek, atau jasa yang ia tawarkan.",
+    placeholder: "Tanya soal pengalaman, proyek, jasa…",
+    error: "Terjadi kesalahan. Coba lagi, atau hubungi Rafif langsung.",
+    disclaimer: "AI · hanya menjawab tentang Rafif",
+    suggestions: ["Jasa apa saja yang Rafif tawarkan?", "Ceritakan tentang OprexDuit", "Pengalaman Rafif di AI / LLM?"],
+  },
+
   footer: {
     rights: "Hak cipta dilindungi.",
     note: "Repositori kode saat ini privat; demo langsung tersedia atas permintaan.",

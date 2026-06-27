@@ -5,6 +5,7 @@ import { profile } from "@/data/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import ChatWidget from "@/components/ChatWidget";
 
 const sans = Sora({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", style: ["italic", "normal"] });
@@ -51,6 +52,7 @@ export default function LangLayout({ children, params }) {
         <Navbar lang={lang} dict={dict} />
         {children}
         <Footer lang={lang} dict={dict} />
+        <ChatWidget dict={dict} />
       </body>
     </html>
   );
