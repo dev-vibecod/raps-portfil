@@ -61,19 +61,19 @@ export const projectDetails = {
           { name: "PolicyDocChunk", fields: ["id", "policyId", "text", "embedding", "sourceFile"] },
         ],
         notes: {
-          en: ["Dify orchestrates prompt flows and tool calls", "AWS Lambda for async document ingestion, S3 for uploads", "OpenSearch for semantic search and conversation logging"],
-          id: ["Dify mengorkestrasi prompt flow dan tool call", "AWS Lambda untuk ingesti dokumen asinkron, S3 untuk upload", "OpenSearch untuk pencarian semantik dan logging percakapan"],
+          en: ["n8n orchestrates prompt flows and tool calls", "AWS Lambda for async document ingestion, S3 for uploads", "OpenSearch for semantic search and conversation logging"],
+          id: ["n8n mengorkestrasi prompt flow dan tool call", "AWS Lambda untuk ingesti dokumen asinkron, S3 untuk upload", "OpenSearch untuk pencarian semantik dan logging percakapan"],
         },
       },
       architecture: {
         blurb: {
-          en: "User turns hit a stateless FastAPI gateway, which calls the Dify-orchestrated LLM. Retrieval is served from OpenSearch; document ingestion runs asynchronously on Lambda.",
-          id: "Giliran pengguna masuk ke gateway FastAPI stateless, yang memanggil LLM yang diorkestrasi Dify. Retrieval dilayani dari OpenSearch; ingesti dokumen berjalan asinkron di Lambda.",
+          en: "User turns hit a stateless FastAPI gateway, which calls the n8n-orchestrated LLM. Retrieval is served from OpenSearch; document ingestion runs asynchronously on Lambda.",
+          id: "Giliran pengguna masuk ke gateway FastAPI stateless, yang memanggil LLM yang diorkestrasi n8n. Retrieval dilayani dari OpenSearch; ingesti dokumen berjalan asinkron di Lambda.",
         },
-        flow: ["Chat client", "FastAPI gateway", "Dify (LLM + tools)", "OpenSearch RAG", "Claims / Policy APIs"],
+        flow: ["Chat client", "FastAPI gateway", "n8n (LLM + tools)", "OpenSearch RAG", "Claims / Policy APIs"],
         layers: [
           { name: "Experience", items: ["Embeddable chat UI", "Form cards"] },
-          { name: "Orchestration", items: ["Dify prompt flows", "Tool calling", "Validation"] },
+          { name: "Orchestration", items: ["n8n prompt flows", "Tool calling", "Validation"] },
           { name: "Retrieval & data", items: ["OpenSearch index", "S3 documents", "Policy/Claims store"] },
           { name: "Async", items: ["Lambda ingestion", "Chunk + embed pipeline"] },
         ],
@@ -490,8 +490,8 @@ export const projectDetails = {
       },
       backend: {
         blurb: {
-          en: "Dify orchestrates prompt flows and tool calls on top of Vertex AI. Role-based access gates what each employee can see and do; company knowledge is indexed in OpenSearch.",
-          id: "Dify mengorkestrasi prompt flow dan tool call di atas Vertex AI. Akses berbasis role membatasi apa yang bisa dilihat dan dilakukan tiap karyawan; knowledge perusahaan diindeks di OpenSearch.",
+          en: "n8n orchestrates prompt flows and tool calls on top of Vertex AI. Role-based access gates what each employee can see and do; company knowledge is indexed in OpenSearch.",
+          id: "n8n mengorkestrasi prompt flow dan tool call di atas Vertex AI. Akses berbasis role membatasi apa yang bisa dilihat dan dilakukan tiap karyawan; knowledge perusahaan diindeks di OpenSearch.",
         },
         endpoints: [
           { method: "POST", path: "/v1/assistant/ask", desc: { en: "Answer a question via prompt flow", id: "Jawab pertanyaan via prompt flow" } },
@@ -506,19 +506,19 @@ export const projectDetails = {
           { name: "KnowledgeDoc", fields: ["id", "title", "body", "audience", "embedding"] },
         ],
         notes: {
-          en: ["Vertex AI as the model backbone", "Dify for orchestration & prompt flows", "Role-based access + OpenSearch knowledge index"],
-          id: ["Vertex AI sebagai tulang punggung model", "Dify untuk orkestrasi & prompt flow", "Akses berbasis role + indeks knowledge OpenSearch"],
+          en: ["Vertex AI as the model backbone", "n8n for orchestration & prompt flows", "Role-based access + OpenSearch knowledge index"],
+          id: ["Vertex AI sebagai tulang punggung model", "n8n untuk orkestrasi & prompt flow", "Akses berbasis role + indeks knowledge OpenSearch"],
         },
       },
       architecture: {
         blurb: {
-          en: "An employee request is checked against role-based access, answered via Dify-orchestrated prompt flows on Vertex AI (grounded in OpenSearch knowledge), and either resolved directly or filed as a structured request.",
-          id: "Permintaan karyawan diperiksa terhadap akses berbasis role, dijawab via prompt flow yang diorkestrasi Dify di Vertex AI (berbasis knowledge OpenSearch), lalu diselesaikan langsung atau diajukan sebagai permintaan terstruktur.",
+          en: "An employee request is checked against role-based access, answered via n8n-orchestrated prompt flows on Vertex AI (grounded in OpenSearch knowledge), and either resolved directly or filed as a structured request.",
+          id: "Permintaan karyawan diperiksa terhadap akses berbasis role, dijawab via prompt flow yang diorkestrasi n8n di Vertex AI (berbasis knowledge OpenSearch), lalu diselesaikan langsung atau diajukan sebagai permintaan terstruktur.",
         },
-        flow: ["Employee", "RBAC check", "Dify prompt flow (Vertex AI)", "OpenSearch knowledge", "Resolve / file request"],
+        flow: ["Employee", "RBAC check", "n8n prompt flow (Vertex AI)", "OpenSearch knowledge", "Resolve / file request"],
         layers: [
           { name: "Access", items: ["Role-based access", "Audience scoping"] },
-          { name: "Orchestration", items: ["Dify prompt flows", "Vertex AI", "Tool calls"] },
+          { name: "Orchestration", items: ["n8n prompt flows", "Vertex AI", "Tool calls"] },
           { name: "Knowledge", items: ["OpenSearch index", "Structured reporting"] },
         ],
       },

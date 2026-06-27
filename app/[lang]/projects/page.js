@@ -3,6 +3,7 @@ import { getProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/meta";
 import Reveal from "@/components/Reveal";
 import Projects from "@/components/Projects";
+import FeaturedProduct from "@/components/FeaturedProduct";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -16,6 +17,7 @@ export default function ProjectsPage({ params }) {
   const lang = isLocale(params.lang) ? params.lang : "id";
   const dict = getDict(lang);
   const projects = getProjects(lang);
+  const featured = projects.find((p) => p.featured);
 
   return (
     <main className="mx-auto max-w-6xl px-5 pt-28 sm:px-8">
@@ -23,6 +25,11 @@ export default function ProjectsPage({ params }) {
         <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{dict.projects.title}</h1>
         <p className="mt-4 max-w-2xl text-mist/70">{dict.projects.intro}</p>
       </Reveal>
+      {featured && (
+        <div className="mt-10">
+          <FeaturedProduct dict={dict} project={featured} />
+        </div>
+      )}
       <div className="-mt-8">
         <Projects lang={lang} dict={dict} projects={projects} heading={false} />
       </div>

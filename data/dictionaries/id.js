@@ -25,6 +25,12 @@ const id = {
     learnMore: "Selengkapnya",
   },
 
+  featured: {
+    badge: "Produk unggulan",
+    live: "Live",
+    visitSite: "Kunjungi situs",
+  },
+
   hero: {
     titleA: "Engineer Backend &",
     titleAccent: "AI/ML",
@@ -92,7 +98,7 @@ const id = {
         title: "AI, Chatbot & LLM",
         blurb: "Chatbot RAG, asisten pelanggan & internal, NL2SQL, dan otomasi alur kerja yang berbasis data Anda.",
         includes: ["Chatbot & asisten RAG", "Natural-language-to-SQL", "Alur agent & prompt", "Otomasi (n8n) & integrasi"],
-        tech: ["LLM + RAG", "Vertex AI", "Dify", "LangChain"],
+        tech: ["LLM + RAG", "n8n", "Vertex AI", "LangChain"],
         example: "insurance-chatbot",
       },
       {
@@ -168,6 +174,18 @@ const id = {
     waPrefix: "Halo Rafif, saya",
     waMid: "Saya ingin membangun:",
     waDetail: "Detail:",
+  },
+
+  cv: {
+    title: "Curriculum Vitae",
+    download: "Unduh PDF",
+    summaryLabel: "Profil",
+    expLabel: "Pengalaman",
+    earlierLabel: "Pengalaman awal",
+    eduLabel: "Pendidikan",
+    skillsLabel: "Keahlian teknis",
+    productsLabel: "Produk unggulan",
+    linkLabel: "Unduh CV",
   },
 
   footer: {

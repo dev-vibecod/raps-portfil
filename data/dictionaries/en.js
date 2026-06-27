@@ -27,6 +27,12 @@ const en = {
     learnMore: "Learn more",
   },
 
+  featured: {
+    badge: "Featured product",
+    live: "Live",
+    visitSite: "Visit live site",
+  },
+
   hero: {
     titleA: "Backend &",
     titleAccent: "AI/ML",
@@ -94,7 +100,7 @@ const en = {
         title: "AI, Chatbot & LLM",
         blurb: "RAG chatbots, customer & internal assistants, NL2SQL, and workflow automation grounded in your data.",
         includes: ["RAG chatbots & assistants", "Natural-language-to-SQL", "Agent & prompt workflows", "Automation (n8n) & integrations"],
-        tech: ["LLM + RAG", "Vertex AI", "Dify", "LangChain"],
+        tech: ["LLM + RAG", "n8n", "Vertex AI", "LangChain"],
         example: "insurance-chatbot",
       },
       {
@@ -170,6 +176,18 @@ const en = {
     waPrefix: "Hi Rafif, I'm",
     waMid: "I'd like to build:",
     waDetail: "Details:",
+  },
+
+  cv: {
+    title: "Curriculum Vitae",
+    download: "Download PDF",
+    summaryLabel: "Profile",
+    expLabel: "Experience",
+    earlierLabel: "Earlier experience",
+    eduLabel: "Education",
+    skillsLabel: "Technical skills",
+    productsLabel: "Featured product",
+    linkLabel: "Download CV",
   },
 
   footer: {

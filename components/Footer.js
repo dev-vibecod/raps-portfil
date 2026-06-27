@@ -10,7 +10,7 @@ export default function Footer({ lang, dict }) {
     { href: `/${lang}/contact`, label: dict.nav.contact },
   ];
   return (
-    <footer className="border-t border-white/8 px-5 py-10 sm:px-8">
+    <footer className="border-t border-white/8 px-5 py-10 sm:px-8 no-print">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-semibold text-white">{profile.name}</p>

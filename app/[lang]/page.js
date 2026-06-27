@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
+import FeaturedProduct from "@/components/FeaturedProduct";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import JsonLd from "@/components/JsonLd";
@@ -15,6 +16,7 @@ export default function HomePage({ params }) {
   const lang = isLocale(params.lang) ? params.lang : "id";
   const dict = getDict(lang);
   const c = getContent(lang);
+  const featured = c.projects.find((p) => p.featured);
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://rafif-portfolio.vercel.app").replace(/\/$/, "");
 
   return (
@@ -23,6 +25,11 @@ export default function HomePage({ params }) {
       <Hero lang={lang} dict={dict} profile={c.profile} />
       <TechMarquee title={dict.home.tech.title} />
       <Services lang={lang} dict={dict} summary index="01" />
+      {featured && (
+        <section className="mx-auto max-w-6xl px-5 pt-12 sm:px-8">
+          <FeaturedProduct dict={dict} project={featured} />
+        </section>
+      )}
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />
 
       {/* About teaser */}

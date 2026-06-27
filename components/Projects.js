@@ -42,7 +42,8 @@ function Card({ project, lang, dict, delay }) {
 // `projects` arrives already localized. `heading` toggles the section header;
 // `limit` shows a subset + a "view all" link (used on the home page).
 export default function Projects({ lang, dict, projects, heading = true, limit, index = "03" }) {
-  const shown = limit ? projects.slice(0, limit) : projects;
+  const caseStudies = projects.filter((p) => !p.featured);
+  const shown = limit ? caseStudies.slice(0, limit) : caseStudies;
   const s = dict.sections.projects;
   return (
     <section id="projects" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
@@ -52,7 +53,7 @@ export default function Projects({ lang, dict, projects, heading = true, limit, 
           <Card key={p.slug} project={p} lang={lang} dict={dict} delay={(i % 3) * 0.06} />
         ))}
       </div>
-      {limit && projects.length > limit && (
+      {limit && caseStudies.length > limit && (
         <div className="mt-10 text-center">
           <Link href={`/${lang}/projects`} className="group inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-white/5">
             {dict.common.viewAll}

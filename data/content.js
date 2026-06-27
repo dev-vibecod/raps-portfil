@@ -95,8 +95,12 @@ export const experience = [
         id: "Telah menyelesaikan 20+ proyek AI/ML dan backend end-to-end untuk klien fintech, telko, dan enterprise, dari desain hingga deployment produksi.",
       },
       {
-        en: "Build LLM applications using RAG, Prompt Engineering, and agent workflows on Vertex AI and Dify.ai, for use cases such as customer chatbots, claims fraud detection, and natural-language data querying (NL2SQL).",
-        id: "Membangun aplikasi LLM menggunakan RAG, Prompt Engineering, dan alur agent di Vertex AI dan Dify.ai, untuk kasus seperti chatbot pelanggan, deteksi fraud klaim, dan kueri data berbahasa natural (NL2SQL).",
+        en: "Built and operate OprexDuit, my own personal-finance analytics SaaS (live in production, free, ~2,000 users) — Next.js/React frontend, secure backend with row-level security, and AI-powered spending analysis.",
+        id: "Membangun dan mengoperasikan OprexDuit, SaaS analitik keuangan pribadi buatan sendiri (live di produksi, gratis, ~2.000 pengguna) — frontend Next.js/React, backend aman dengan row-level security, dan analisis pengeluaran bertenaga AI.",
+      },
+      {
+        en: "Build LLM applications and automated agent workflows using RAG, Prompt Engineering, and n8n (with Vertex AI), for use cases such as customer chatbots, claims fraud detection, and natural-language data querying (NL2SQL).",
+        id: "Membangun aplikasi LLM dan alur kerja agent terotomasi menggunakan RAG, Prompt Engineering, dan n8n (dengan Vertex AI), untuk kasus seperti chatbot pelanggan, deteksi fraud klaim, dan kueri data berbahasa natural (NL2SQL).",
       },
       {
         en: "Build Python/FastAPI backends for AI inference, data processing, and multi-source REST integration.",
@@ -207,6 +211,39 @@ export const earlierNote = {
 
 export const projects = [
   {
+    // Featured, REAL, live product (public). Links to the live site; no
+    // representative mockup needed — the preview is a real screenshot.
+    slug: "oprexduit",
+    featured: true,
+    live: true,
+    url: "https://oprexduit.vercel.app",
+    image: "/projects/oprexduit.png",
+    title: "OprexDuit — Personal Finance Analytics SaaS",
+    industry: { en: "SaaS · Personal Finance", id: "SaaS · Keuangan Pribadi" },
+    metrics: [
+      { value: "~2,000", label: { en: "users", id: "pengguna" } },
+      { value: "Free", label: { en: "to use", id: "gratis" } },
+      { value: "Live", label: { en: "in production", id: "di produksi" } },
+    ],
+    summary: {
+      en: "My own SaaS — a secure personal-finance analytics workspace to track transactions, budgets, and monthly insights, with AI-powered spending analysis.",
+      id: "SaaS buatan saya — workspace analitik keuangan pribadi yang aman untuk melacak transaksi, budget, dan insight bulanan, dengan analisis pengeluaran bertenaga AI.",
+    },
+    problem: {
+      en: "Personal finances are scattered across apps and spreadsheets, making it hard to see spending, budgets, and trends in one secure place.",
+      id: "Keuangan pribadi tersebar di banyak aplikasi dan spreadsheet, sehingga sulit melihat pengeluaran, budget, dan tren dalam satu tempat yang aman.",
+    },
+    built: {
+      en: "A secure finance workspace with transaction tracking, budgets, monthly reports, asset management, financial planning, and an AI spending analysis (“Belanja AI”) — with row-level security and encrypted sessions.",
+      id: "Workspace keuangan yang aman dengan pencatatan transaksi, budget, laporan bulanan, manajemen aset, perencanaan keuangan, dan analisis pengeluaran AI (“Belanja AI”) — dengan row-level security dan sesi terenkripsi.",
+    },
+    stack: ["Next.js", "React", "Tailwind", "Supabase", "PostgreSQL (RLS)", "Vercel"],
+    outcome: {
+      en: "Live in production and free to use, with around 2,000 users managing their finances from a single secure dashboard.",
+      id: "Live di produksi dan gratis dipakai, dengan sekitar 2.000 pengguna mengelola keuangan dari satu dashboard yang aman.",
+    },
+  },
+  {
     slug: "insurance-chatbot",
     title: "Insurance Chatbot — Registration & Claims Automation",
     industry: { en: "Insurance / Fintech", id: "Asuransi / Fintech" },
@@ -222,7 +259,7 @@ export const projects = [
       en: "An end-to-end conversational AI that guides users through registration and claims, answers policy questions via retrieval over policy documents, and validates and persists submissions through backend APIs.",
       id: "AI percakapan end-to-end yang memandu pengguna melalui pendaftaran dan klaim, menjawab pertanyaan polis via retrieval atas dokumen polis, serta memvalidasi dan menyimpan pengajuan lewat API backend.",
     },
-    stack: ["LLM + RAG (Dify)", "Python/FastAPI", "AWS Lambda & S3", "OpenSearch"],
+    stack: ["LLM + RAG", "n8n", "Python/FastAPI", "AWS Lambda & S3", "OpenSearch"],
     outcome: {
       en: "Automated routine registration and claims intake through chat, reducing manual handling for common cases; policy answers grounded in source documents via RAG.",
       id: "Mengotomasi pendaftaran rutin dan intake klaim lewat chat, mengurangi penanganan manual untuk kasus umum; jawaban polis berbasis dokumen sumber via RAG.",
@@ -354,7 +391,7 @@ export const projects = [
       en: "An internal support chatbot orchestrated with prompt flows, with role-based access and indexed knowledge, automating common employee requests and structured reporting workflows.",
       id: "Chatbot dukungan internal yang diorkestrasi dengan prompt flow, dengan akses berbasis role dan knowledge terindeks, mengotomasi permintaan karyawan umum dan alur pelaporan terstruktur.",
     },
-    stack: ["Vertex AI", "Dify (orchestration)", "Role-based access", "OpenSearch indexing"],
+    stack: ["n8n (orchestration)", "Vertex AI", "Role-based access", "OpenSearch indexing"],
     outcome: {
       en: "Handled routine HR and operations requests end-to-end, reducing manual workload on internal teams.",
       id: "Menangani permintaan HR dan operasional rutin secara end-to-end, mengurangi beban kerja manual tim internal.",
@@ -410,7 +447,7 @@ export const projects = [
 ];
 
 export const skills = [
-  { group: { en: "Generative AI & LLM", id: "Generative AI & LLM" }, items: ["RAG", "Prompt Engineering", "Agent Workflows", "MLOps", "LLM evaluation", "OpenAI GPT", "Anthropic Claude", "Google Gemini", "Vertex AI", "Dify.ai", "n8n", "OpenSearch"] },
+  { group: { en: "Generative AI & LLM", id: "Generative AI & LLM" }, items: ["RAG", "Prompt Engineering", "Agent Workflows", "n8n", "MLOps", "LLM evaluation", "OpenAI GPT", "Anthropic Claude", "Google Gemini", "Vertex AI", "OpenSearch"] },
   { group: { en: "LLM Frameworks & RAG", id: "Framework LLM & RAG" }, items: ["LangChain", "LlamaIndex", "LangGraph", "Pydantic AI", "MCP", "pgvector", "Qdrant", "Langfuse", "Ragas", "vLLM", "Ollama"] },
   { group: { en: "AI-Assisted Development", id: "AI-Assisted Development" }, items: ["Claude Code", "Google Antigravity", "GitHub Copilot", "Cursor"] },
   { group: { en: "Machine Learning", id: "Machine Learning" }, items: ["pandas", "NumPy", "Polars", "scikit-learn", "XGBoost", "TensorFlow", "Keras", "PyTorch", "MLflow", "Vertex AI Pipelines"] },
