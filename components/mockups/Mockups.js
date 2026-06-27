@@ -1,6 +1,6 @@
 // Presentational, data-driven UI mockups. Pure (no hooks) so they render at a
 // fixed design size inside <ScaledMockup>. All content is illustrative.
-import { ArrowUp, Search, Plus, ShieldCheck, BarChart3, Database } from "lucide-react";
+import { ArrowUp, Search, Plus, ShieldCheck, BarChart3, Database, Camera, ScanLine, Video } from "lucide-react";
 
 const tone = {
   good: "text-emerald-400",
@@ -18,6 +18,8 @@ const statusStyles = {
   Low: "bg-emerald-500/12 text-emerald-300 ring-emerald-500/25",
   Active: "bg-emerald-500/12 text-emerald-300 ring-emerald-500/25",
   Pending: "bg-amber-500/12 text-amber-300 ring-amber-500/25",
+  Allow: "bg-emerald-500/12 text-emerald-300 ring-emerald-500/25",
+  Deny: "bg-rose-500/12 text-rose-300 ring-rose-500/25",
 };
 
 function StatusChip({ value }) {
@@ -245,6 +247,76 @@ export function QueryMock({ data }) {
                   <div className="h-full rounded-full bg-iris-500" style={{ width: `${r.pct}%` }} />
                 </div>
                 <span className="w-12 text-right text-mist/55">{r.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------- Detection / IoT
+export function DetectionMock({ data }) {
+  return (
+    <div className="flex h-full flex-col bg-ink-900">
+      <div className="flex items-center gap-3 border-b border-white/8 bg-ink-700 px-5 py-3.5">
+        <span className="grid h-10 w-10 place-items-center rounded-xl bg-iris-500 text-base font-bold text-ink-900">
+          {data.initials}
+        </span>
+        <div>
+          <p className="text-[15px] font-semibold text-white">{data.app}</p>
+          <p className="flex items-center gap-1.5 text-[12px] text-mist/60">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" /> {data.subtitle}
+          </p>
+        </div>
+        <span className="ml-auto rounded-full bg-emerald-500/12 px-3 py-1 text-[12px] font-medium text-emerald-300 ring-1 ring-emerald-500/25">
+          Accuracy {data.accuracy}
+        </span>
+      </div>
+
+      <div className="grid flex-1 grid-cols-[1.3fr_1fr] gap-4 p-5">
+        <div>
+          <div className="relative flex h-[230px] items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#0a0d16]">
+            <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-md bg-ink-900/70 px-2 py-1 text-[11px] text-mist/70">
+              <Video size={12} className="text-rose-400" /> {data.camLabel}
+            </div>
+            <Camera size={42} className="text-white/10" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="rounded-md border-2 border-iris-400 px-10 py-5" />
+              <span className="absolute -top-6 left-0 whitespace-nowrap rounded bg-iris-500 px-2 py-0.5 text-[11px] font-bold text-ink-900">
+                {data.detected} · {data.confidence}
+              </span>
+            </div>
+            <span className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] text-iris-300">
+              <ScanLine size={12} /> detecting…
+            </span>
+          </div>
+          <div className="mt-3 flex items-center gap-3">
+            <div className="flex-1 rounded-xl border border-white/8 bg-ink-700 px-4 py-3">
+              <p className="text-[11px] text-mist/55">Decision</p>
+              <p className="text-[13px] font-medium text-white">{data.rule}</p>
+            </div>
+            <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-5 py-3 text-center">
+              <p className="text-[11px] text-emerald-300/80">Gate</p>
+              <p className="text-[17px] font-bold text-emerald-300">{data.gate}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-white/8 bg-ink-700 p-4">
+          <p className="text-[13px] font-semibold text-white">Detection log</p>
+          <div className="mt-3 grid grid-cols-[1.3fr_1fr_0.9fr] gap-2 border-b border-white/8 pb-2 text-[11px] uppercase tracking-wide text-mist/45">
+            <span>Plate</span>
+            <span>Time</span>
+            <span>Action</span>
+          </div>
+          <div className="mt-1 divide-y divide-white/6">
+            {data.log.map((r, i) => (
+              <div key={i} className="grid grid-cols-[1.3fr_1fr_0.9fr] items-center gap-2 py-2 text-[12px]">
+                <span className="font-mono text-white">{r.plate}</span>
+                <span className="text-mist/55">{r.time}</span>
+                <StatusChip value={r.action} />
               </div>
             ))}
           </div>

@@ -1,17 +1,12 @@
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { about, coreExpertise } from "@/data/content";
 
-export default function About() {
+// `about` and `coreExpertise` arrive already localized (plain strings).
+export default function About({ dict, about, coreExpertise, index = "01" }) {
+  const s = dict.sections.about;
   return (
     <section id="about" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
-      <SectionHeading
-        index="01"
-        eyebrow="About"
-        title="Turning real business problems into"
-        accent="working products."
-      />
-
+      <SectionHeading index={index} eyebrow={s.eyebrow} title={s.title} accent={s.accent} />
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-5">
           {about.paragraphs.map((p, i) => (
@@ -19,7 +14,6 @@ export default function About() {
               <p className="text-base leading-relaxed text-mist/75">{p}</p>
             </Reveal>
           ))}
-
           <Reveal delay={0.2}>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {about.highlights.map((h) => (
@@ -31,7 +25,6 @@ export default function About() {
             </div>
           </Reveal>
         </div>
-
         <div className="space-y-3">
           {coreExpertise.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08}>

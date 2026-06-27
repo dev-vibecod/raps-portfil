@@ -6,14 +6,14 @@ const methodStyles = {
   DELETE: "bg-rose-500/12 text-rose-300 ring-rose-500/25",
 };
 
-export default function BackendInfo({ backend }) {
+export default function BackendInfo({ backend, labels }) {
   return (
     <div>
       <p className="text-sm leading-relaxed text-mist/75">{backend.blurb}</p>
 
       {/* Endpoints */}
       <div className="mt-6">
-        <p className="eyebrow">API endpoints</p>
+        <p className="eyebrow">{labels?.apiEndpoints || "API endpoints"}</p>
         <div className="mt-3 overflow-hidden rounded-2xl border border-white/8">
           {backend.endpoints.map((e, i) => (
             <div
@@ -33,7 +33,7 @@ export default function BackendInfo({ backend }) {
       {/* Data model + notes */}
       <div className="mt-6 grid gap-3 lg:grid-cols-[1.3fr_1fr]">
         <div>
-          <p className="eyebrow">Data model</p>
+          <p className="eyebrow">{labels?.dataModel || "Data model"}</p>
           <div className="mt-3 space-y-2">
             {backend.entities.map((ent) => (
               <div key={ent.name} className="rounded-2xl border border-white/8 bg-white/[0.02] p-3.5">
@@ -50,7 +50,7 @@ export default function BackendInfo({ backend }) {
           </div>
         </div>
         <div>
-          <p className="eyebrow">Implementation notes</p>
+          <p className="eyebrow">{labels?.notes || "Implementation notes"}</p>
           <ul className="mt-3 space-y-2">
             {backend.notes.map((n) => (
               <li key={n} className="flex gap-2.5 text-[13px] leading-relaxed text-mist/70">

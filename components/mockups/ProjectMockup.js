@@ -1,10 +1,11 @@
 import ScaledMockup from "./ScaledMockup";
-import { BrowserChrome, ChatMock, DashboardMock, QueryMock } from "./Mockups";
+import { BrowserChrome, ChatMock, DashboardMock, QueryMock, DetectionMock } from "./Mockups";
 
 const renderers = {
   chat: ChatMock,
   dashboard: DashboardMock,
   query: QueryMock,
+  detection: DetectionMock,
 };
 
 // Wraps the right archetype in browser chrome, scaled to fill its container.
