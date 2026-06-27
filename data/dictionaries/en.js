@@ -44,6 +44,7 @@ const en = {
   },
 
   home: {
+    tech: { title: "Tech I build with" },
     servicesTeaser: {
       title: "Need a website, app, or AI built?",
       sub: "I take projects end-to-end — from idea and design to deployment and maintenance. Web, applications, AI/chatbots, data & ML, IoT and computer vision.",

@@ -42,6 +42,7 @@ const id = {
   },
 
   home: {
+    tech: { title: "Teknologi yang saya pakai" },
     servicesTeaser: {
       title: "Butuh website, aplikasi, atau AI?",
       sub: "Saya kerjakan proyek end-to-end — dari ide dan desain sampai deployment dan pemeliharaan. Website, aplikasi, AI/chatbot, data & ML, IoT dan computer vision.",

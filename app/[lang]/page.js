@@ -1,6 +1,7 @@
 import { isLocale, getDict } from "@/lib/i18n";
 import { getContent } from "@/lib/content";
 import Hero from "@/components/Hero";
+import TechMarquee from "@/components/TechMarquee";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
@@ -20,6 +21,7 @@ export default function HomePage({ params }) {
     <>
       <JsonLd lang={lang} baseUrl={baseUrl} />
       <Hero lang={lang} dict={dict} profile={c.profile} />
+      <TechMarquee title={dict.home.tech.title} />
       <Services lang={lang} dict={dict} summary index="01" />
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />
 

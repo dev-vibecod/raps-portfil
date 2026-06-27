@@ -4,6 +4,7 @@ import { locales, isLocale, getDict } from "@/lib/i18n";
 import { profile } from "@/data/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const sans = Sora({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", style: ["italic", "normal"] });
@@ -46,6 +47,7 @@ export default function LangLayout({ children, params }) {
   return (
     <html lang={lang} className={`${sans.variable} ${serif.variable}`}>
       <body className="bg-aurora font-sans antialiased">
+        <SmoothScroll />
         <Navbar lang={lang} dict={dict} />
         {children}
         <Footer lang={lang} dict={dict} />

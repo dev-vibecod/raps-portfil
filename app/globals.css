@@ -7,7 +7,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis owns smooth scrolling; CSS smooth would fight it. */
   scroll-padding-top: 96px;
 }
 
@@ -88,9 +88,28 @@ body {
   background: #6f78f5;
 }
 
+/* Infinite logo marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.group\/marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
   }
   * {
     animation-duration: 0.001ms !important;
