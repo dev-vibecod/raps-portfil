@@ -9,12 +9,13 @@ export default function CvActions({ lang, dict }) {
       <Link href={`/${lang}`} className="inline-flex items-center gap-2 text-sm text-mist/70 transition-colors hover:text-white">
         <ArrowLeft size={16} /> {dict.nav.home}
       </Link>
-      <button
-        onClick={() => window.print()}
+      <a
+        href={`/cv/rafif-cv-${lang}.pdf`}
+        download
         className="inline-flex items-center gap-2 rounded-full bg-iris-500 px-5 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-iris-400"
       >
         <Download size={16} /> {dict.cv.download}
-      </button>
+      </a>
     </div>
   );
 }

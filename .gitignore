@@ -31,3 +31,5 @@ yarn-error.log*
 /vid
 /old-cv
 *.pdf
+# but DO ship the generated CV PDFs (served as downloads)
+!public/cv/*.pdf

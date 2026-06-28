@@ -185,6 +185,7 @@ const id = {
     eduLabel: "Pendidikan",
     skillsLabel: "Keahlian teknis",
     productsLabel: "Produk unggulan",
+    projectsLabel: "Proyek pilihan",
     linkLabel: "Unduh CV",
   },
 

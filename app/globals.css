@@ -106,9 +106,20 @@ body {
 
 /* Print: clean white CV document */
 @media print {
+  @page { margin: 0; }
   .no-print { display: none !important; }
   body { background: #fff !important; }
-  .cv-doc { box-shadow: none !important; margin: 0 !important; max-width: 100% !important; }
+  /* Hide the fixed aurora background + grid so the PDF is pure white. */
+  body.bg-aurora::before,
+  body.bg-aurora::after { display: none !important; }
+  main { padding: 0 !important; }
+  .cv-doc {
+    box-shadow: none !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    padding: 14mm 16mm !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

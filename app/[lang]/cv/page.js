@@ -43,6 +43,7 @@ export default function CvPage({ params }) {
             <span className="inline-flex items-center gap-1.5"><Phone size={13} /> {profile.phone}</span>
             <span className="inline-flex items-center gap-1.5"><Mail size={13} /> {profile.email}</span>
             <span className="inline-flex items-center gap-1.5"><Linkedin size={13} /> in/rafifayyassarwicaksono</span>
+            <span className="inline-flex items-center gap-1.5"><Globe size={13} /> raps-portofolio.vercel.app</span>
           </div>
         </header>
 
@@ -86,6 +87,20 @@ export default function CvPage({ params }) {
             </p>
           </Section>
         )}
+
+        <Section title={dict.cv.projectsLabel}>
+          <div className="space-y-2.5">
+            {projects.filter((p) => !p.featured).map((p) => (
+              <div key={p.slug}>
+                <p className="text-[13px] leading-snug text-zinc-800">
+                  <span className="font-semibold text-zinc-900">{p.title}</span>
+                  {" — "}{p.summary}
+                </p>
+                <p className="text-[11.5px] text-zinc-500">{p.industry} · {p.stack.slice(0, 4).join(", ")}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
 
         <div className="grid gap-6 sm:grid-cols-[1fr_1.4fr]">
           <Section title={dict.cv.eduLabel}>

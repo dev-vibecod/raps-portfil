@@ -187,6 +187,7 @@ const en = {
     eduLabel: "Education",
     skillsLabel: "Technical skills",
     productsLabel: "Featured product",
+    projectsLabel: "Selected projects",
     linkLabel: "Download CV",
   },
 
