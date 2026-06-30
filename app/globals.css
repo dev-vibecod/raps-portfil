@@ -22,12 +22,15 @@ body {
 .bg-aurora::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -10%;
   z-index: -2;
   background:
-    radial-gradient(60rem 40rem at 80% -10%, rgba(111, 120, 245, 0.18), transparent 60%),
-    radial-gradient(50rem 40rem at -10% 20%, rgba(139, 147, 255, 0.12), transparent 55%),
-    radial-gradient(40rem 30rem at 50% 110%, rgba(169, 176, 255, 0.1), transparent 60%);
+    radial-gradient(55rem 38rem at 80% -8%, rgba(111, 120, 245, 0.26), transparent 60%),
+    radial-gradient(48rem 38rem at -8% 18%, rgba(139, 147, 255, 0.18), transparent 55%),
+    radial-gradient(40rem 32rem at 18% 95%, rgba(99, 230, 209, 0.1), transparent 60%),
+    radial-gradient(46rem 34rem at 92% 88%, rgba(169, 176, 255, 0.16), transparent 60%);
+  will-change: transform;
+  animation: auroraDrift 26s ease-in-out infinite alternate;
 }
 
 .bg-aurora::after {
@@ -43,10 +46,26 @@ body {
 
 /* Glass surface used across cards and the navbar. */
 .glass {
+  position: relative;
   background: linear-gradient(180deg, rgba(23, 28, 43, 0.7), rgba(12, 15, 26, 0.55));
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+/* Mouse-follow spotlight (vars set by <Spotlight/>). */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(240px circle at var(--mx, -200px) var(--my, -200px), rgba(168, 176, 255, 0.16), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.glass:hover::after {
+  opacity: 1;
 }
 
 .glass-hover {
@@ -88,19 +107,44 @@ body {
   background: #6f78f5;
 }
 
+/* Drifting aurora */
+@keyframes auroraDrift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-3%, 2.5%, 0) scale(1.08); }
+}
+
+/* Animated grain/noise overlay for texture. */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 /* Infinite logo marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
 .animate-marquee {
-  animation: marquee 45s linear infinite;
+  animation: marquee 48s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marqueeReverse 48s linear infinite;
 }
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
-.group\/marquee:hover .animate-marquee {
+.group\/marquee:hover .animate-marquee,
+.group\/marquee:hover .animate-marquee-reverse {
   animation-play-state: paused;
 }
 
@@ -126,8 +170,10 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .animate-marquee {
-    animation: none;
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .bg-aurora::before {
+    animation: none !important;
   }
   * {
     animation-duration: 0.001ms !important;

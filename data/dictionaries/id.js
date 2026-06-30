@@ -37,6 +37,7 @@ const id = {
     titleB: "yang membangun sistem siap produksi",
     ctaPrimary: "Lihat proyek",
     ctaSecondary: "Mulai proyek",
+    stats: { years: "tahun", projects: "proyek", users: "pengguna OprexDuit" },
   },
 
   sections: {

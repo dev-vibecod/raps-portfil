@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import CountUp from "./CountUp";
 
 // `about` and `coreExpertise` arrive already localized (plain strings).
 export default function About({ dict, about, coreExpertise, index = "01" }) {
@@ -17,8 +18,8 @@ export default function About({ dict, about, coreExpertise, index = "01" }) {
           <Reveal delay={0.2}>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {about.highlights.map((h) => (
-                <div key={h.label} className="rounded-2xl border border-white/8 bg-white/[0.02] p-4">
-                  <p className="text-2xl font-semibold text-gradient">{h.value}</p>
+                <div key={h.label} className="glass glass-hover rounded-2xl p-4">
+                  <CountUp value={h.value} className="text-2xl font-bold text-gradient" />
                   <p className="mt-1 text-xs leading-snug text-mist/55">{h.label}</p>
                 </div>
               ))}
@@ -29,8 +30,13 @@ export default function About({ dict, about, coreExpertise, index = "01" }) {
           {coreExpertise.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08}>
               <div className="glass glass-hover rounded-2xl p-5">
-                <h3 className="text-sm font-semibold text-white">{c.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-mist/65">{c.body}</p>
+                <div className="flex items-start gap-3">
+                  <span className="font-serif text-lg italic text-iris-400/70">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white">{c.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-mist/65">{c.body}</p>
+                  </div>
+                </div>
               </div>
             </Reveal>
           ))}

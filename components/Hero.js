@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, Mail, MapPin } from "lucide-react";
+import CountUp from "./CountUp";
 
 const stack = [
   { k: "GenAI / LLM", v: "RAG · Agents" },
@@ -16,6 +17,10 @@ export default function Hero({ lang, dict, profile }) {
   const t = dict.hero;
   return (
     <section className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-16 sm:px-8">
+      {/* Floating gradient orbs */}
+      <div aria-hidden className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-iris-500/20 blur-[100px] animate-float" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 rounded-full bg-iris-400/15 blur-[120px] animate-float" style={{ animationDelay: "1.5s" }} />
+
       <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="eyebrow flex items-center gap-2">
@@ -26,8 +31,8 @@ export default function Hero({ lang, dict, profile }) {
             {dict.common.available}
           </motion.p>
 
-          <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.05, ease }} className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl">
-            {t.titleA} <span className="font-serif italic font-light text-iris-400">{t.titleAccent}</span> {t.titleB}
+          <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.05, ease }} className="mt-5 text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            {t.titleA} <span className="font-serif italic font-light text-gradient">{t.titleAccent}</span> {t.titleB}
             <span className="text-iris-500">.</span>
           </motion.h1>
 
@@ -50,6 +55,19 @@ export default function Hero({ lang, dict, profile }) {
             <span className="h-4 w-px bg-white/15" />
             <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-iris-400" aria-label="LinkedIn"><Linkedin size={18} /></a>
             <a href={`mailto:${profile.email}`} className="transition-colors hover:text-iris-400" aria-label="Email"><Mail size={18} /></a>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.36 }} className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+            {[
+              { v: "3+", k: t.stats.years },
+              { v: "20+", k: t.stats.projects },
+              { v: "~2,000", k: t.stats.users },
+            ].map((s) => (
+              <div key={s.k}>
+                <CountUp value={s.v} className="text-2xl font-bold text-gradient sm:text-3xl" />
+                <p className="mt-0.5 text-[11px] uppercase tracking-wider text-mist/50">{s.k}</p>
+              </div>
+            ))}
           </motion.div>
         </div>
 

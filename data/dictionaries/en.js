@@ -39,6 +39,7 @@ const en = {
     titleB: "engineer shipping production systems",
     ctaPrimary: "View projects",
     ctaSecondary: "Start a project",
+    stats: { years: "years exp.", projects: "projects", users: "OprexDuit users" },
   },
 
   sections: {

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import ChatWidget from "@/components/ChatWidget";
+import Spotlight from "@/components/Spotlight";
 
 const sans = Sora({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", style: ["italic", "normal"] });
@@ -48,7 +49,9 @@ export default function LangLayout({ children, params }) {
   return (
     <html lang={lang} className={`${sans.variable} ${serif.variable}`}>
       <body className="bg-aurora font-sans antialiased">
+        <div className="noise-overlay" aria-hidden="true" />
         <SmoothScroll />
+        <Spotlight />
         <Navbar lang={lang} dict={dict} />
         {children}
         <Footer lang={lang} dict={dict} />
