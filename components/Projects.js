@@ -10,9 +10,11 @@ function Card({ project, lang, dict, delay }) {
   return (
     <Reveal delay={delay}>
       <Link href={`/${lang}/projects/${project.slug}`} className="glass glass-hover group flex h-full flex-col overflow-hidden rounded-3xl p-4">
-        <div className="relative overflow-hidden rounded-xl ring-1 ring-white/8">
+        <div className="relative overflow-hidden rounded-xl ring-1 ring-white/8 transition-all duration-300 group-hover:ring-iris-500/40">
           {mockup ? (
-            <div className="pointer-events-none"><ProjectMockup mockup={mockup} /></div>
+            <div className="pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.04]">
+              <ProjectMockup mockup={mockup} />
+            </div>
           ) : (
             <div className="aspect-[16/10] w-full bg-ink-700" />
           )}

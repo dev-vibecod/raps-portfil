@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Globe, LayoutGrid, Sparkles, Database, Cpu, Cloud, ArrowUpRight, Check, MapPin } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import FaqAccordion from "./FaqAccordion";
 
 const icons = { web: Globe, apps: LayoutGrid, ai: Sparkles, data: Database, iot: Cpu, cloud: Cloud };
 
@@ -80,15 +81,19 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
 
       {!summary && (
         <>
-          {/* How I work */}
+          {/* How I work — connected stepper */}
           <div className="mt-20">
             <SectionHeading index="02" eyebrow={s.howTitle} title={s.howTitle} />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {/* connecting line on desktop */}
+              <div className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-iris-500/0 via-iris-500/40 to-iris-500/0 lg:block" />
               {s.how.map((step) => (
                 <Reveal key={step.step}>
-                  <div className="glass rounded-2xl p-5">
-                    <p className="font-serif text-2xl italic text-iris-400/70">{step.step}</p>
-                    <h3 className="mt-2 text-sm font-semibold text-white">{step.title}</h3>
+                  <div className="relative flex h-full flex-col items-start">
+                    <span className="grid h-14 w-14 place-items-center rounded-2xl bg-ink-800 font-serif text-xl italic text-iris-300 ring-1 ring-iris-500/30 shadow-glow">
+                      {step.step}
+                    </span>
+                    <h3 className="mt-4 text-sm font-semibold text-white">{step.title}</h3>
                     <p className="mt-1.5 text-[13px] leading-relaxed text-mist/65">{step.desc}</p>
                   </div>
                 </Reveal>
@@ -96,19 +101,10 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
             </div>
           </div>
 
-          {/* FAQ */}
+          {/* FAQ — accordion */}
           <div className="mt-20">
             <SectionHeading index="03" eyebrow={s.faqTitle} title={s.faqTitle} />
-            <div className="grid gap-4 md:grid-cols-2">
-              {s.faq.map((qa) => (
-                <Reveal key={qa.q}>
-                  <div className="glass rounded-2xl p-5">
-                    <h3 className="text-sm font-semibold text-white">{qa.q}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-mist/65">{qa.a}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <FaqAccordion items={s.faq} />
           </div>
         </>
       )}
