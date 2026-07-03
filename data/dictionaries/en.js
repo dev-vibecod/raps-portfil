@@ -8,9 +8,20 @@ const en = {
     home: "Home",
     services: "Services",
     projects: "Projects",
+    blog: "Blog",
     about: "About",
     contact: "Contact",
     cta: "Get in touch",
+  },
+
+  blog: {
+    title: "Articles & guides",
+    intro: "Practical guides on building websites, apps, AI chatbots, and automation — written from real project experience.",
+    readTime: "min read",
+    back: "All articles",
+    ctaTitle: "Have a project in mind?",
+    ctaBody: "Tell me what you want to build — the initial discovery chat is free.",
+    ctaButton: "Start a conversation",
   },
 
   common: {
@@ -129,6 +140,48 @@ const en = {
         example: "hr-data-api",
       },
     ],
+    pricing: {
+      title: "Website development packages",
+      note: "Starting prices — final quotes depend on scope & requirements. The initial discovery chat is always free.",
+      popular: "Most popular",
+      from: "from",
+      cta: "Order this package",
+      custom: "Discuss your needs",
+      items: [
+        {
+          name: "Basic Landing Page",
+          price: "IDR 99K",
+          desc: "A modern one-pager for small businesses, personal brands, or a single product — live within days.",
+          features: ["1 responsive page (Next.js + Tailwind)", "Modern design from a curated template", "WhatsApp, Maps & social buttons", "Free Vercel hosting + HTTPS (.vercel.app subdomain)", "2–3 day turnaround · 1 revision"],
+        },
+        {
+          name: "Company Profile",
+          price: "IDR 499K",
+          desc: "A credible multi-page business-profile site, ready to be found on Google.",
+          features: ["Up to 5 pages (home, services, about, gallery, contact)", "Design tailored to your brand (not just a template)", "Basic SEO + Google Search Console submission", "Contact form → WhatsApp/email + your own domain setup*", "± 1 week turnaround · 2 revisions"],
+          popular: true,
+        },
+        {
+          name: "Business + CMS",
+          price: "IDR 1.5M",
+          desc: "A dynamic website with an admin — manage content, blog, and galleries yourself.",
+          features: ["Up to 10 pages + blog", "Admin/CMS (Supabase / headless CMS) for content", "Full SEO, sitemap, visitor analytics", "WhatsApp Business / payment link / Maps integrations", "2–3 week turnaround · 3 revisions"],
+        },
+        {
+          name: "Web App / System",
+          price: "IDR 5M",
+          desc: "A custom web application: management systems, booking, inventory, or internal dashboards.",
+          features: ["Multi-role auth + database (PostgreSQL/Supabase)", "Dashboards, reports & data export", "REST API (FastAPI/Next.js) + integrations", "Cloud deployment + basic monitoring", "4–6 week turnaround · 1-month bugfix warranty"],
+        },
+      ],
+      enterprise: {
+        name: "AI, Automation & Enterprise",
+        price: "Custom",
+        desc: "Document-grounded AI chatbots (RAG), NL2SQL, n8n automation, computer vision/IoT, or multi-system enterprise integrations — scoped and estimated after a free discovery session.",
+        features: ["Requirements analysis & architecture design", "LLM/RAG, agent workflows, quality evaluation", "Data pipelines & integrations (GCP/AWS, Kafka, Airflow)", "Security, monitoring & documented handover"],
+      },
+      footnote: "*Domain fees (e.g. .com / .id) and third-party services are billed separately at registrar prices.",
+    },
     howTitle: "How I work",
     how: [
       { step: "01", title: "Discovery", desc: "We define the problem, scope, and success criteria together." },
@@ -242,6 +295,11 @@ const en = {
       title: "About — Rafif Ayyassar Wicaksono",
       description: "Backend & AI/ML engineer with 3+ years of experience across fintech, telco, and enterprise. Google Cloud, AWS, FastAPI, LLM/RAG.",
       keywords: ["backend engineer", "AI/ML engineer", "google cloud", "fastapi developer"],
+    },
+    blog: {
+      title: "Articles on Web, App & AI Development — Rafif A.W.",
+      description: "Practical guides on website costs, app development, AI chatbots, and automation for business — from a working engineer.",
+      keywords: ["website development guide", "app development cost", "AI chatbot for business", "automation guide"],
     },
     contact: {
       title: "Contact — Hire Rafif A.W.",

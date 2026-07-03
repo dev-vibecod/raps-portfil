@@ -29,8 +29,26 @@ export default function ChatWidget({ dict }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: next }),
       });
-      const data = await res.json();
-      setMessages([...next, { role: "assistant", content: res.ok && data.content ? data.content : t.error }]);
+
+      const isStream = res.ok && res.headers.get("content-type")?.includes("text/plain");
+      if (isStream && res.body) {
+        // Append an empty assistant bubble, then fill it as chunks arrive.
+        setMessages([...next, { role: "assistant", content: "" }]);
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let acc = "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          acc += decoder.decode(value, { stream: true });
+          const snapshot = acc;
+          setMessages([...next, { role: "assistant", content: snapshot }]);
+        }
+        if (!acc.trim()) setMessages([...next, { role: "assistant", content: t.error }]);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setMessages([...next, { role: "assistant", content: data.content || data.error || t.error }]);
+      }
     } catch {
       setMessages([...next, { role: "assistant", content: t.error }]);
     } finally {

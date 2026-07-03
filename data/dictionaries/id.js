@@ -6,9 +6,20 @@ const id = {
     home: "Beranda",
     services: "Layanan",
     projects: "Proyek",
+    blog: "Blog",
     about: "Tentang",
     contact: "Kontak",
     cta: "Hubungi saya",
+  },
+
+  blog: {
+    title: "Artikel & panduan",
+    intro: "Panduan praktis seputar pembuatan website, aplikasi, chatbot AI, dan otomasi — ditulis dari pengalaman proyek nyata.",
+    readTime: "menit baca",
+    back: "Semua artikel",
+    ctaTitle: "Punya rencana proyek?",
+    ctaBody: "Ceritakan apa yang ingin Anda bangun — sesi diskusi awal gratis.",
+    ctaButton: "Mulai obrolan",
   },
 
   common: {
@@ -127,6 +138,48 @@ const id = {
         example: "hr-data-api",
       },
     ],
+    pricing: {
+      title: "Paket jasa pembuatan website",
+      note: "Harga mulai — angka final menyesuaikan kebutuhan & ruang lingkup. Diskusi awal selalu gratis.",
+      popular: "Paling laris",
+      from: "mulai",
+      cta: "Pesan paket ini",
+      custom: "Diskusikan kebutuhan",
+      items: [
+        {
+          name: "Landing Page Basic",
+          price: "Rp99rb",
+          desc: "Satu halaman modern untuk UMKM, personal, atau satu produk — online dalam hitungan hari.",
+          features: ["1 halaman responsif (Next.js + Tailwind)", "Desain modern berbasis template pilihan", "Tombol WhatsApp, Maps & media sosial", "Hosting gratis Vercel + HTTPS (subdomain .vercel.app)", "Pengerjaan 2–3 hari · 1x revisi"],
+        },
+        {
+          name: "Company Profile",
+          price: "Rp499rb",
+          desc: "Website profil usaha multi-halaman yang kredibel dan siap ditemukan di Google.",
+          features: ["Hingga 5 halaman (beranda, layanan, tentang, galeri, kontak)", "Desain disesuaikan brand (bukan sekadar template)", "SEO dasar + submit Google Search Console", "Form kontak → WhatsApp/email + setup domain sendiri*", "Pengerjaan ± 1 minggu · 2x revisi"],
+          popular: true,
+        },
+        {
+          name: "Bisnis + CMS",
+          price: "Rp1,5jt",
+          desc: "Website dinamis dengan admin — konten, blog, dan galeri Anda kelola sendiri.",
+          features: ["Hingga 10 halaman + blog", "Admin/CMS (Supabase / headless CMS) untuk kelola konten", "SEO lengkap, sitemap, analytics pengunjung", "Integrasi WhatsApp Business / payment link / Google Maps", "Pengerjaan 2–3 minggu · 3x revisi"],
+        },
+        {
+          name: "Aplikasi Web / Sistem",
+          price: "Rp5jt",
+          desc: "Aplikasi web custom: sistem manajemen, booking, inventori, atau dashboard internal.",
+          features: ["Login multi-role + database (PostgreSQL/Supabase)", "Dashboard, laporan & ekspor data", "REST API (FastAPI/Next.js) + integrasi sistem lain", "Deploy cloud + monitoring dasar", "Pengerjaan 4–6 minggu · garansi bugfix 1 bulan"],
+        },
+      ],
+      enterprise: {
+        name: "AI, Otomasi & Enterprise",
+        price: "Custom",
+        desc: "Chatbot AI berbasis dokumen (RAG), NL2SQL, otomasi n8n, computer vision/IoT, atau integrasi enterprise multi-sistem — ruang lingkup dan estimasi disusun setelah sesi discovery gratis.",
+        features: ["Analisis kebutuhan & desain arsitektur", "LLM/RAG, agent workflow, evaluasi kualitas", "Pipeline data & integrasi (GCP/AWS, Kafka, Airflow)", "Keamanan, monitoring & serah terima terdokumentasi"],
+      },
+      footnote: "*Biaya domain (mis. .com / .id) & layanan pihak ketiga ditagihkan terpisah sesuai harga registrar.",
+    },
     howTitle: "Cara saya bekerja",
     how: [
       { step: "01", title: "Diskusi awal", desc: "Kita definisikan masalah, ruang lingkup, dan kriteria sukses bersama." },
@@ -239,6 +292,11 @@ const id = {
       title: "Tentang — Rafif Ayyassar Wicaksono",
       description: "Engineer Backend & AI/ML dengan 3+ tahun pengalaman di fintech, telco, dan enterprise. Google Cloud, AWS, FastAPI, LLM/RAG.",
       keywords: ["backend engineer indonesia", "AI/ML engineer", "google cloud", "developer fastapi"],
+    },
+    blog: {
+      title: "Artikel Pembuatan Website, Aplikasi & AI — Rafif A.W.",
+      description: "Panduan praktis biaya pembuatan website, pengembangan aplikasi, chatbot AI, dan otomasi untuk bisnis — dari engineer yang mengerjakannya langsung.",
+      keywords: ["biaya pembuatan website", "panduan pembuatan aplikasi", "chatbot AI untuk bisnis", "otomasi bisnis", "jasa pembuatan website"],
     },
     contact: {
       title: "Kontak — Pesan Jasa Rafif A.W.",

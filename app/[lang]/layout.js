@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import ChatWidget from "@/components/ChatWidget";
 import Spotlight from "@/components/Spotlight";
 import ScrollProgress from "@/components/ScrollProgress";
+import { Analytics } from "@vercel/analytics/react";
 
 const sans = Sora({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", style: ["italic", "normal"] });
@@ -58,6 +59,7 @@ export default function LangLayout({ children, params }) {
         {children}
         <Footer lang={lang} dict={dict} />
         <ChatWidget dict={dict} />
+        <Analytics />
       </body>
     </html>
   );
