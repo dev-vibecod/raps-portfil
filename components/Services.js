@@ -50,11 +50,13 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {item.tech.map((t) => (
-                        <span key={t} className="rounded-full border border-line bg-veil px-2 py-0.5 font-mono text-2xs text-mist/60">{t}</span>
-                      ))}
-                    </div>
+                    {/* The per-service tech chips are deliberately not rendered:
+                        naming the exact toolchain on a services page tells a
+                        prospective client precisely what they are paying for and
+                        invites them to price it elsewhere. The `tech` arrays stay
+                        in the dictionaries — this is a server component, so
+                        unrendered fields cost nothing at runtime and the decision
+                        is one line to reverse. */}
                     {item.example && (
                       <Link href={`/${lang}/projects/${item.example}`} className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-iris-400">
                         {s.exampleLabel}
