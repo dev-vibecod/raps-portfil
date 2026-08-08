@@ -26,7 +26,7 @@ export default function HomePage({ params }) {
       <Services lang={lang} dict={dict} summary index="01" />
       {featured && (
         <section className="mx-auto max-w-6xl px-5 pt-16 sm:px-8 md:pt-20">
-          <FeaturedProduct dict={dict} project={featured} />
+          <FeaturedProduct lang={lang} dict={dict} project={featured} />
         </section>
       )}
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />

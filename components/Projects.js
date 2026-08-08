@@ -18,9 +18,11 @@ function Card({ project, lang, dict, delay }) {
           ) : (
             <div className="aspect-[16/10] w-full bg-ink-700" />
           )}
-          <span className="absolute left-2 top-2 z-10 rounded-md bg-ink-900/95 px-2 py-1 font-mono text-2xs font-medium text-mist/70 ring-1 ring-line">
-            {project.academic ? dict.projects.academicLabel : dict.common.representative}
-          </span>
+          {project.academic && (
+            <span className="absolute left-2 top-2 z-10 rounded-md bg-ink-900/95 px-2 py-1 font-mono text-2xs font-medium text-mist/70 ring-1 ring-line">
+              {dict.projects.academicLabel}
+            </span>
+          )}
         </div>
         <div className="flex flex-1 flex-col px-1 pt-4">
           <span className="text-2xs font-medium font-mono uppercase tracking-label text-iris-400/80">{project.industry}</span>

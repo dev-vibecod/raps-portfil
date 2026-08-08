@@ -54,7 +54,7 @@ const id = {
   sections: {
     about: { eyebrow: "Tentang", title: "Mengubah masalah bisnis nyata menjadi", accent: "produk yang bekerja." },
     skills: { eyebrow: "Perkakas", title: "Keahlian &", accent: "kapabilitas.", sub: "Stack luas yang teruji di produksi — GenAI, backend, data/ML, dan cloud — dibangun dengan perhatian pada keandalan, monitoring, dan biaya." },
-    projects: { eyebrow: "Karya pilihan", title: "Proyek", accent: "unggulan.", sub: "Produk end-to-end yang ditangani dari definisi masalah sampai deployment. Repositori bersifat privat; tiap studi kasus memakai mockup representatif." },
+    projects: { eyebrow: "Karya pilihan", title: "Proyek", accent: "unggulan.", sub: "Produk end-to-end yang ditangani dari definisi masalah sampai deployment." },
     experience: { eyebrow: "Karier", title: "Pengalaman &", accent: "pendidikan.", earlierLabel: "Pengalaman awal", educationLabel: "Pendidikan" },
     services: { eyebrow: "Yang bisa saya bangun", title: "Layanan &", accent: "kerja sama." },
   },
@@ -66,7 +66,7 @@ const id = {
       sub: "Saya kerjakan proyek end-to-end — dari ide dan desain sampai deployment dan pemeliharaan. Website, aplikasi, AI/chatbot, data & ML, IoT dan computer vision.",
     },
     projectsTeaser: {
-      sub: "Sejumlah produk end-to-end. Tiap studi kasus memakai mockup representatif — repositori asli bersifat privat.",
+      sub: "Sejumlah produk end-to-end, ditangani dari definisi masalah sampai deployment.",
     },
     aboutTeaser: {
       title: "Engineer Backend & AI/ML, 3+ tahun, end-to-end di cloud",
@@ -145,6 +145,8 @@ const id = {
       from: "mulai",
       cta: "Pesan paket ini",
       custom: "Diskusikan kebutuhan",
+      waPackage: 'Halo Rafif, saya tertarik paket "{name}".',
+      waCustom: 'Halo Rafif, saya ingin diskusi proyek "{name}".',
       items: [
         {
           name: "Landing Page Basic",
@@ -199,7 +201,7 @@ const id = {
   projects: {
     title: "Proyek & studi kasus",
     intro:
-      "Produk end-to-end yang dikerjakan sebagai pekerjaan freelance dan akademik, masing-masing ditangani dari definisi masalah sampai deployment. Repositori bersifat privat — tiap studi kasus memakai mockup representatif.",
+      "Produk end-to-end yang dikerjakan sebagai pekerjaan freelance dan akademik, masing-masing ditangani dari definisi masalah sampai deployment.",
     academicLabel: "Akademik / riset",
   },
 

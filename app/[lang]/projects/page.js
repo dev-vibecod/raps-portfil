@@ -27,7 +27,7 @@ export default function ProjectsPage({ params }) {
       </Reveal>
       {featured && (
         <div className="mt-10">
-          <FeaturedProduct dict={dict} project={featured} />
+          <FeaturedProduct lang={lang} dict={dict} project={featured} />
         </div>
       )}
       {/* `flush` drops the section's top padding because this page already

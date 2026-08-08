@@ -56,7 +56,7 @@ const en = {
   sections: {
     about: { eyebrow: "About", title: "Turning real business problems into", accent: "working products." },
     skills: { eyebrow: "Toolbox", title: "Skills &", accent: "capabilities.", sub: "A broad, production-tested stack across GenAI, backend, data/ML, and cloud — built for reliability, monitoring, and cost." },
-    projects: { eyebrow: "Selected work", title: "Featured", accent: "projects.", sub: "End-to-end products owned from problem definition through deployment. Repositories are private; each case study uses a representative mockup." },
+    projects: { eyebrow: "Selected work", title: "Featured", accent: "projects.", sub: "End-to-end products owned from problem definition through deployment." },
     experience: { eyebrow: "Career", title: "Experience &", accent: "education.", earlierLabel: "Earlier experience", educationLabel: "Education" },
     services: { eyebrow: "What I can build", title: "Services &", accent: "collaboration." },
   },
@@ -68,7 +68,7 @@ const en = {
       sub: "I take projects end-to-end — from idea and design to deployment and maintenance. Web, applications, AI/chatbots, data & ML, IoT and computer vision.",
     },
     projectsTeaser: {
-      sub: "A selection of end-to-end products. Each case study uses a representative mockup — real repositories are private.",
+      sub: "A selection of end-to-end products, owned from problem definition through deployment.",
     },
     aboutTeaser: {
       title: "Backend & AI/ML engineer, 3+ years, end-to-end on the cloud",
@@ -147,6 +147,11 @@ const en = {
       from: "from",
       cta: "Order this package",
       custom: "Discuss your needs",
+      // Prefilled WhatsApp text. Was hardcoded Indonesian in Services.js, so an
+      // English visitor clicking a package opened a chat in a language they may
+      // not read. {name} is substituted at call time.
+      waPackage: 'Hi Rafif, I am interested in the "{name}" package.',
+      waCustom: 'Hi Rafif, I would like to discuss a "{name}" project.',
       items: [
         {
           name: "Basic Landing Page",
@@ -201,7 +206,7 @@ const en = {
   projects: {
     title: "Projects & case studies",
     intro:
-      "End-to-end products delivered as freelance and academic work, each owned from problem definition through deployment. Repositories are private — every case study uses a representative mockup.",
+      "End-to-end products delivered as freelance and academic work, each owned from problem definition through deployment.",
     academicLabel: "Academic / research",
   },
 

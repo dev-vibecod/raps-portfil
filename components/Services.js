@@ -85,7 +85,7 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
             <SectionHeading level={2} index="02" title={s.pricing.title} sub={s.pricing.note} />
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {s.pricing.items.map((p, i) => {
-                const wa = `https://wa.me/${profile.phoneE164}?text=${encodeURIComponent(`Halo Rafif, saya tertarik paket "${p.name}".`)}`;
+                const wa = `https://wa.me/${profile.phoneE164}?text=${encodeURIComponent(s.pricing.waPackage.replace("{name}", p.name))}`;
                 return (
                   <Reveal key={p.name} delay={(i % 4) * 0.06}>
                     <div className={`surface surface-hover relative flex h-full flex-col rounded-3xl p-6 ${p.popular ? "ring-1 ring-iris-500/50" : ""}`}>
@@ -146,7 +146,7 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
                   </ul>
                 </div>
                 <a
-                  href={`https://wa.me/${profile.phoneE164}?text=${encodeURIComponent(`Halo Rafif, saya ingin diskusi proyek "${s.pricing.enterprise.name}".`)}`}
+                  href={`https://wa.me/${profile.phoneE164}?text=${encodeURIComponent(s.pricing.waCustom.replace("{name}", s.pricing.enterprise.name))}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-iris-500 px-6 py-3 text-sm font-medium text-ink-900 transition-colors hover:bg-iris-400"
