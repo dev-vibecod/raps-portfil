@@ -1,11 +1,10 @@
 import { isLocale, getDict } from "@/lib/i18n";
 import { getContent } from "@/lib/content";
 import Hero from "@/components/Hero";
-import TechMarquee from "@/components/TechMarquee";
+import TechIndex from "@/components/TechIndex";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import FeaturedProduct from "@/components/FeaturedProduct";
-import About from "@/components/About";
 import Contact from "@/components/Contact";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
@@ -20,27 +19,27 @@ export default function HomePage({ params }) {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://rafif-portfolio.vercel.app").replace(/\/$/, "");
 
   return (
-    <>
+    <main>
       <JsonLd lang={lang} baseUrl={baseUrl} />
       <Hero lang={lang} dict={dict} profile={c.profile} />
-      <TechMarquee title={dict.home.tech.title} />
+      <TechIndex title={dict.home.tech.title} />
       <Services lang={lang} dict={dict} summary index="01" />
       {featured && (
-        <section className="mx-auto max-w-6xl px-5 pt-12 sm:px-8">
+        <section className="mx-auto max-w-6xl px-5 pt-16 sm:px-8 md:pt-20">
           <FeaturedProduct dict={dict} project={featured} />
         </section>
       )}
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />
 
       {/* About teaser */}
-      <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
         <Reveal>
-          <div className="glass flex flex-col items-start justify-between gap-6 rounded-3xl p-8 sm:flex-row sm:items-center sm:p-10">
+          <div className="surface flex flex-col items-start justify-between gap-6 rounded-3xl p-8 sm:flex-row sm:items-center sm:p-10">
             <div>
               <p className="eyebrow">{dict.nav.about}</p>
               <h2 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">{dict.home.aboutTeaser.title}</h2>
             </div>
-            <Link href={`/${lang}/about`} className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-white/5">
+            <Link href={`/${lang}/about`} className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
               {dict.home.aboutTeaser.cta}
               <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
@@ -49,6 +48,6 @@ export default function HomePage({ params }) {
       </section>
 
       <Contact lang={lang} dict={dict} profile={c.profile} copy={dict.home.contact} />
-    </>
+    </main>
   );
 }

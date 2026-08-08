@@ -32,10 +32,10 @@ export function generateMetadata({ params }) {
 
 function Block({ index, label, title, children }) {
   return (
-    <section className="border-t border-white/8 py-12 md:py-16">
+    <section className="border-t border-line py-12 md:py-16">
       <Reveal>
         <p className="eyebrow flex items-center gap-3">
-          <span className="text-mist/50">{index}</span>
+          <span className="text-mist/65">{index}</span>
           <span className="h-px w-8 bg-iris-500/50" />
           {label}
         </p>
@@ -60,32 +60,32 @@ export default function ProjectPage({ params }) {
   const nextTitle = nextProject.title.split(" — ")[0];
 
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-8 pt-28 sm:px-8 md:pt-32">
+    <main className="mx-auto max-w-5xl px-5 pb-8 pt-28 sm:px-8 md:pt-36">
       <Reveal>
         <Link href={`/${lang}/projects`} className="inline-flex items-center gap-2 text-sm text-mist/70 transition-colors hover:text-white">
           <ArrowLeft size={16} /> {dict.common.allProjects}
         </Link>
-        <span className="mt-6 block text-[11px] font-medium uppercase tracking-wider text-iris-400/80">{project.industry}</span>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{project.title}</h1>
+        <span className="mt-6 block font-mono text-2xs font-medium uppercase tracking-label text-iris-400/80">{project.industry}</span>
+        <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl md:text-5xl">{project.title}</h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist/75">{detail.overview}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.stack.map((s) => (
-            <span key={s} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-mist/70">{s}</span>
+            <span key={s} className="rounded-full border border-line bg-veil px-2 py-0.5 font-mono text-2xs text-mist/60">{s}</span>
           ))}
         </div>
-        <div className="mt-6 inline-flex items-center gap-2 rounded-xl border border-amber-500/25 bg-amber-500/8 px-3.5 py-2 text-[12.5px] text-amber-200/90">
+        <div className="mt-6 inline-flex items-center gap-2 rounded-xl border border-amber-500/25 bg-amber-500/10 px-3.5 py-2 text-xs text-amber-200/90">
           <Info size={15} className="shrink-0" /> {d.banner}
         </div>
       </Reveal>
 
       <Block index="01" label={d.frontend.label} title={d.frontend.title}>
-        <div className="overflow-hidden rounded-2xl border border-white/10 shadow-card">
+        <div className="overflow-hidden rounded-2xl border border-line shadow-card">
           <ProjectMockup mockup={mockup} />
         </div>
         <p className="mt-5 text-sm leading-relaxed text-mist/75">{detail.frontend.blurb}</p>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
           {detail.frontend.features.map((f) => (
-            <li key={f} className="flex gap-2.5 text-[13.5px] text-mist/70">
+            <li key={f} className="flex gap-2.5 text-sm text-mist/70">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-iris-500" />{f}
             </li>
           ))}
@@ -107,7 +107,7 @@ export default function ProjectPage({ params }) {
             { k: d.brief.built, v: project.built },
             { k: d.brief.outcome, v: project.outcome },
           ].map((b) => (
-            <div key={b.k} className="rounded-2xl border border-white/8 bg-white/[0.02] p-5">
+            <div key={b.k} className="rounded-2xl border border-line bg-veil p-5">
               <p className="eyebrow">{b.k}</p>
               <p className="mt-2 text-sm leading-relaxed text-mist/75">{b.v}</p>
             </div>
@@ -118,7 +118,7 @@ export default function ProjectPage({ params }) {
       <Block index="05" label={d.decisions.label} title={d.decisions.title}>
         <ul className="space-y-3">
           {detail.decisions.map((dec) => (
-            <li key={dec} className="flex gap-3 rounded-2xl border border-white/8 bg-white/[0.02] p-4">
+            <li key={dec} className="flex gap-3 rounded-2xl border border-line bg-veil p-4">
               <Lightbulb size={17} className="mt-0.5 shrink-0 text-iris-400" />
               <span className="text-sm leading-relaxed text-mist/75">{dec}</span>
             </li>
@@ -126,11 +126,11 @@ export default function ProjectPage({ params }) {
         </ul>
       </Block>
 
-      <div className="flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-10 sm:flex-row">
+      <div className="flex flex-col items-center justify-between gap-4 border-t border-line pt-10 sm:flex-row">
         <Link href={`/${lang}/projects`} className="inline-flex items-center gap-2 text-sm text-mist/70 transition-colors hover:text-white">
           <ArrowLeft size={16} /> {dict.common.backToProjects}
         </Link>
-        <Link href={`/${lang}/projects/${nextSlug}`} className="group inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-white/5">
+        <Link href={`/${lang}/projects/${nextSlug}`} className="group inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
           {dict.common.next}: {nextTitle}
           <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>

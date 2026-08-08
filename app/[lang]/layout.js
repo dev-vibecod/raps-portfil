@@ -1,19 +1,23 @@
-import { Sora, Fraunces } from "next/font/google";
+import { Sora, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { locales, isLocale, getDict } from "@/lib/i18n";
 import { profile } from "@/data/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
 import ChatWidget from "@/components/ChatWidget";
-import Spotlight from "@/components/Spotlight";
 import ScrollProgress from "@/components/ScrollProgress";
 import { Analytics } from "@vercel/analytics/react";
 
+// Two variable families, one file each. Sora carries the prose; the mono
+// carries every figure, label and tag — that contrast is the design.
 const sans = Sora({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", style: ["italic", "normal"] });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadataBase = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://rafif-portfolio.vercel.app");
+
+// Only /id and /en are valid; any other first segment (e.g. /.env, /foobar)
+// returns a real 404 instead of soft-rendering the home page.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -49,12 +53,14 @@ export default function LangLayout({ children, params }) {
   const lang = isLocale(params.lang) ? params.lang : "id";
   const dict = getDict(lang);
   return (
-    <html lang={lang} className={`${sans.variable} ${serif.variable}`}>
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
       <body className="bg-aurora font-sans antialiased">
-        <div className="noise-overlay" aria-hidden="true" />
-        <SmoothScroll />
+        {/* <Reveal> hides its children until an IntersectionObserver fires.
+            With JS off that never happens, so unhide everything. */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
         <ScrollProgress />
-        <Spotlight />
         <Navbar lang={lang} dict={dict} />
         {children}
         <Footer lang={lang} dict={dict} />

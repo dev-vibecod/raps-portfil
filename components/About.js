@@ -15,32 +15,44 @@ export default function About({ dict, about, coreExpertise, index = "01" }) {
               <p className="text-base leading-relaxed text-mist/75">{p}</p>
             </Reveal>
           ))}
+          {/* Same figures, same treatment as the hero: a hairline <dl>, not
+              four cards. Four card nodes for four numbers was the "wall of
+              identical cards" the rest of the site has moved away from. */}
           <Reveal delay={0.2}>
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-5 border-t border-line-soft pt-6">
               {about.highlights.map((h) => (
-                <div key={h.label} className="glass glass-hover rounded-2xl p-4">
-                  <CountUp value={h.value} className="text-2xl font-bold text-gradient" />
-                  <p className="mt-1 text-xs leading-snug text-mist/55">{h.label}</p>
+                <div key={h.label} className="flex flex-col-reverse">
+                  <dt className="mt-1 max-w-[9rem] font-mono text-2xs uppercase leading-snug tracking-label text-mist/65">
+                    {h.label}
+                  </dt>
+                  <dd>
+                    <CountUp value={h.value} className="meta block text-2xl font-semibold text-white" />
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </Reveal>
         </div>
-        <div className="space-y-3">
+
+        {/* Numbered hairline rows — reads as an index, and the ordinal is the
+            only thing carrying accent colour. */}
+        <ol className="divide-y divide-line-soft border-y border-line-soft">
           {coreExpertise.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.08}>
-              <div className="glass glass-hover rounded-2xl p-5">
-                <div className="flex items-start gap-3">
-                  <span className="font-serif text-lg italic text-iris-400/70">{String(i + 1).padStart(2, "0")}</span>
+            <li key={c.title}>
+              <Reveal delay={i * 0.08}>
+                <div className="flex items-start gap-4 py-5">
+                  <span className="font-mono text-2xs tracking-label text-iris-400/70">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <div>
                     <h3 className="text-sm font-semibold text-white">{c.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-mist/65">{c.body}</p>
                   </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

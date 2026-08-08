@@ -15,12 +15,14 @@ export default function LangToggle({ lang }) {
   };
 
   return (
-    <div className="flex items-center rounded-full border border-white/12 bg-white/[0.03] p-0.5 text-xs font-medium">
+    <div className="flex items-center rounded-full border border-line bg-veil p-0.5 font-mono text-2xs font-medium tracking-label">
       {locales.map((l) => (
         <button
           key={l}
+          type="button"
           onClick={() => switchTo(l)}
           aria-label={`Switch to ${l.toUpperCase()}`}
+          aria-current={l === lang ? "true" : undefined}
           className={`rounded-full px-2.5 py-1 uppercase transition-colors ${
             l === lang ? "bg-iris-500 text-ink-900" : "text-mist/60 hover:text-white"
           }`}

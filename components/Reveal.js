@@ -1,32 +1,59 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
 
-// Scroll-triggered reveal. Primary trigger is IntersectionObserver (useInView);
-// a timed fallback guarantees content is never left hidden if the observer
-// doesn't fire (e.g. odd viewport/timing).
-export default function Reveal({ children, delay = 0, y = 24, className = "" }) {
+/**
+ * Scroll-triggered reveal.
+ *
+ * Was a framer-motion `motion.div`. The animation is a fade and a 24px rise —
+ * two composited properties a CSS transition does natively — so the library was
+ * costing ~45 kB on every route to do what the browser does for free.
+ *
+ * The observer is the primary trigger; a 900ms timer is a safety net so content
+ * is never left invisible if it never fires. `globals.css` carries a
+ * `<noscript>` counterpart for the same reason.
+ */
+export default function Reveal({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [forced, setForced] = useState(false);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setForced(true), 900);
-    return () => clearTimeout(t);
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "-80px 0px" }
+    );
+    io.observe(el);
+
+    const fallback = setTimeout(() => {
+      setShown(true);
+      io.disconnect();
+    }, 900);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
-  const show = inView || forced;
-
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={className}
-      initial={{ opacity: 0, y }}
-      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.6, delay: inView ? delay : 0, ease: [0.22, 1, 0.36, 1] }}
+      className={`reveal${shown ? " is-visible" : ""}${className ? ` ${className}` : ""}`}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

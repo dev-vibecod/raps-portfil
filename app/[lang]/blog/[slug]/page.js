@@ -47,7 +47,7 @@ export default function BlogPost({ params }) {
   };
 
   return (
-    <main className="mx-auto max-w-3xl px-5 pb-24 pt-28 sm:px-8">
+    <main className="mx-auto max-w-3xl px-5 pb-24 pt-28 sm:px-8 md:pt-36">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Reveal>
@@ -55,16 +55,16 @@ export default function BlogPost({ params }) {
           <ArrowLeft size={16} /> {dict.blog.back}
         </Link>
 
-        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-mist/55">
+        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-mist/70">
           <time dateTime={post.date}>{fmt.format(new Date(post.date))}</time>
-          <span className="h-3 w-px bg-white/15" />
+          <span className="h-3 w-px bg-line-strong" />
           <span className="inline-flex items-center gap-1"><Clock size={12} /> {post.readMinutes} {dict.blog.readTime}</span>
           {post.tags.map((t) => (
-            <span key={t} className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-mist/60">{t}</span>
+            <span key={t} className="rounded-full border border-line bg-veil px-2 py-0.5 font-mono text-2xs text-mist/60">{t}</span>
           ))}
         </div>
 
-        <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">{l.title}</h1>
+        <h1 className="mt-4 text-3xl font-semibold leading-tight text-white sm:text-4xl">{l.title}</h1>
         <p className="mt-4 text-base leading-relaxed text-mist/70">{l.excerpt}</p>
       </Reveal>
 
@@ -85,7 +85,7 @@ export default function BlogPost({ params }) {
 
       {/* CTA */}
       <Reveal>
-        <div className="glass mt-14 rounded-3xl p-7 text-center sm:p-9">
+        <div className="surface mt-14 rounded-3xl p-7 text-center sm:p-9">
           <h2 className="text-xl font-semibold text-white sm:text-2xl">{dict.blog.ctaTitle}</h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-mist/70">{dict.blog.ctaBody}</p>
           <Link href={`/${lang}/contact`} className="group mt-5 inline-flex items-center gap-2 rounded-full bg-iris-500 px-6 py-3 text-sm font-medium text-ink-900 transition-colors hover:bg-iris-400">

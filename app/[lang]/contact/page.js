@@ -18,7 +18,7 @@ export default function ContactPage({ params }) {
   const { profile } = getContent(lang);
 
   return (
-    <main className="pt-24">
+    <main className="pt-4">
       <section className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <h1 className="sr-only">{dict.contact.title} {dict.contact.accent}</h1>

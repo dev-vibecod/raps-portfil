@@ -20,9 +20,9 @@ export default function ProjectsPage({ params }) {
   const featured = projects.find((p) => p.featured);
 
   return (
-    <main className="mx-auto max-w-6xl px-5 pt-28 sm:px-8">
+    <main className="mx-auto max-w-6xl px-5 pt-28 sm:px-8 md:pt-36">
       <Reveal>
-        <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{dict.projects.title}</h1>
+        <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">{dict.projects.title}</h1>
         <p className="mt-4 max-w-2xl text-mist/70">{dict.projects.intro}</p>
       </Reveal>
       {featured && (
@@ -30,9 +30,11 @@ export default function ProjectsPage({ params }) {
           <FeaturedProduct dict={dict} project={featured} />
         </div>
       )}
-      <div className="-mt-8">
-        <Projects lang={lang} dict={dict} projects={projects} heading={false} />
-      </div>
+      {/* `flush` drops the section's top padding because this page already
+          supplied its own heading above — previously patched with a `-mt-8`
+          wrapper, which put the page's rhythm in the caller instead of the
+          component. */}
+      <Projects lang={lang} dict={dict} projects={projects} heading={false} flush />
     </main>
   );
 }

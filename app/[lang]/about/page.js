@@ -22,12 +22,12 @@ export default function AboutPage({ params }) {
   const c = getContent(lang);
 
   return (
-    <main className="pt-20">
+    <main className="pt-4">
       <section className="mx-auto max-w-6xl px-5 pt-8 sm:px-8">
         <Reveal>
-          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{dict.about.title}</h1>
+          <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">{dict.about.title}</h1>
           <p className="mt-4 max-w-2xl text-mist/70">{dict.about.intro}</p>
-          <Link href={`/${lang}/cv`} className="group mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-white/5">
+          <Link href={`/${lang}/cv`} className="group mt-6 inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
             <FileText size={15} /> {dict.cv.linkLabel}
           </Link>
         </Reveal>

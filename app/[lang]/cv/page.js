@@ -36,7 +36,7 @@ export default function CvPage({ params }) {
       <article className="cv-doc mx-auto max-w-3xl rounded-xl bg-white px-8 py-10 text-zinc-800 shadow-card sm:px-12 print:rounded-none">
         {/* Header */}
         <header className="border-b-2 border-zinc-800 pb-4">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900">{profile.name}</h1>
+          <h1 className="text-3xl font-bold text-zinc-900">{profile.name}</h1>
           <p className="mt-1 text-lg font-medium text-iris-600">{profile.role}</p>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-zinc-600">
             <span className="inline-flex items-center gap-1.5"><MapPin size={13} /> {profile.location}</span>

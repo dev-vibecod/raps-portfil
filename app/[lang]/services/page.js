@@ -19,7 +19,7 @@ export default function ServicesPage({ params }) {
   const { profile } = getContent(lang);
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://rafif-portfolio.vercel.app").replace(/\/$/, "");
   return (
-    <main className="pt-16">
+    <main className="pt-4">
       <JsonLd lang={lang} baseUrl={baseUrl} />
       <Services lang={lang} dict={dict} />
       <Contact lang={lang} dict={dict} profile={profile} copy={dict.contact} />

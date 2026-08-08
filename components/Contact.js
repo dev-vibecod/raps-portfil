@@ -16,13 +16,15 @@ export default function Contact({ lang, dict, profile, copy, withForm = false })
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
       <Reveal>
-        <div className="glass relative overflow-hidden rounded-[2rem] p-8 shadow-card sm:p-12">
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-60 [background:radial-gradient(40rem_20rem_at_50%_-20%,rgba(111,120,245,0.25),transparent_70%)]" />
+        {/* The decorative radial-gradient that used to sit here was `-z-10`
+            behind an opaque `.surface` — it painted nothing. Deleted rather
+            than rescued: the panel does not need it. */}
+        <div className="surface relative overflow-hidden rounded-3xl p-8 shadow-card sm:p-12">
           <div className={withForm ? "grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center" : "text-center"}>
             <div className={withForm ? "" : "mx-auto max-w-2xl"}>
               <p className="eyebrow">{dict.nav.contact}</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
-                {copy.title} <span className="font-serif italic font-light text-iris-400">{copy.accent}</span>
+              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+                {copy.title} <span className="text-iris-400">{copy.accent}</span>
               </h2>
               <p className="mt-4 max-w-xl text-mist/70">{copy.sub || copy.intro}</p>
 
@@ -36,11 +38,13 @@ export default function Contact({ lang, dict, profile, copy, withForm = false })
               <div className={`mt-8 grid gap-3 ${withForm ? "sm:grid-cols-1" : "mx-auto max-w-2xl sm:grid-cols-2"}`}>
                 {methods.map((m) => {
                   const Inner = (
-                    <div className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] p-4 text-left transition-colors hover:border-iris-500/40">
-                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-iris-500/15 text-iris-400"><m.icon size={16} /></span>
+                    <div className="flex items-center gap-3 rounded-2xl border border-line bg-veil p-4 text-left transition-colors hover:border-iris-500/40">
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-veil-strong text-mist/70">
+                        <m.icon size={16} aria-hidden />
+                      </span>
                       <span className="min-w-0">
-                        <span className="block text-[11px] uppercase tracking-wider text-mist/45">{m.label}</span>
-                        <span className="block truncate text-sm text-white">{m.value}</span>
+                        <span className="block text-2xs font-mono uppercase tracking-label text-mist/60">{m.label}</span>
+                        <span className="block truncate font-mono text-sm text-white">{m.value}</span>
                       </span>
                     </div>
                   );

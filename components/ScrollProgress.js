@@ -1,32 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-// Thin gradient progress bar tracking page scroll (works with Lenis, which
-// drives native window scroll).
+/**
+ * Thin progress bar tracking page scroll.
+ *
+ * Two things were wrong with the previous version: it animated `width`, which
+ * cannot be composited and forces layout + paint on every scroll frame, and it
+ * did so through React state, re-rendering the tree at scroll frequency.
+ *
+ * Now it writes `transform: scaleX()` straight to the node — compositor-only,
+ * no React render — and coalesces to one write per frame.
+ */
 export default function ScrollProgress() {
-  const [pct, setPct] = useState(0);
+  const barRef = useRef(null);
 
   useEffect(() => {
-    const update = () => {
+    const bar = barRef.current;
+    if (!bar) return;
+
+    let frame = 0;
+    const write = () => {
+      frame = 0;
       const el = document.documentElement;
       const max = el.scrollHeight - el.clientHeight;
-      setPct(max > 0 ? (el.scrollTop / max) * 100 : 0);
+      const p = max > 0 ? el.scrollTop / max : 0;
+      bar.style.transform = `scaleX(${p})`;
     };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(write);
+    };
+
+    write();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
     };
   }, []);
 
   return (
-    <div className="no-print fixed inset-x-0 top-0 z-[70] h-[3px]">
+    <div className="no-print pointer-events-none fixed inset-x-0 top-0 z-[70] h-[2px]" aria-hidden>
       <div
-        className="h-full bg-gradient-to-r from-iris-600 via-iris-400 to-iris-500 shadow-[0_0_12px_rgba(139,147,255,0.6)]"
-        style={{ width: `${pct}%` }}
+        ref={barRef}
+        className="h-full w-full origin-left bg-iris-500"
+        style={{ transform: "scaleX(0)" }}
       />
     </div>
   );

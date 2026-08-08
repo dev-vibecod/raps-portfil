@@ -61,31 +61,47 @@ export default function ChatWidget({ dict }) {
     <div className="no-print">
       {/* Launcher */}
       <button
+        type="button"
         onClick={() => setOpen((o) => !o)}
         aria-label={t.title}
-        className="fixed bottom-5 right-5 z-[60] grid h-14 w-14 place-items-center rounded-full bg-iris-500 text-ink-900 shadow-glow transition-transform hover:scale-105 active:scale-95"
+        aria-expanded={open}
+        aria-controls="chat-panel"
+        className="fixed bottom-5 right-5 z-[60] grid h-14 w-14 place-items-center rounded-full bg-iris-500 text-ink-900 transition-transform hover:scale-105 active:scale-95"
       >
-        {open ? <X size={22} /> : <MessageCircle size={22} />}
+        {open ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
       </button>
 
       {/* Panel */}
       {open && (
-        <div className="glass fixed bottom-24 right-5 z-[60] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl shadow-card">
+        <div
+          id="chat-panel"
+          role="dialog"
+          aria-label={t.title}
+          className="glass fixed bottom-24 right-5 z-[60] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl shadow-card"
+        >
           {/* Header */}
-          <div className="flex items-center gap-3 border-b border-white/8 bg-white/[0.03] px-4 py-3.5">
+          <div className="flex items-center gap-3 border-b border-line bg-veil px-4 py-3.5">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-iris-500/20 text-iris-400 ring-1 ring-iris-500/40">
               <Sparkles size={16} />
             </span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-white">{t.title}</p>
-              <p className="truncate text-[11px] text-mist/55">{t.disclaimer}</p>
+              <p className="truncate text-2xs text-mist/70">{t.disclaimer}</p>
             </div>
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-4">
+          {/* Replies stream in a token at a time. Without a live region a
+              screen-reader user gets silence and has to hunt for the answer. */}
+          <div
+            ref={scrollRef}
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions text"
+            className="flex-1 space-y-3 overflow-y-auto p-4"
+          >
             <div className="flex justify-start">
-              <div className="max-w-[85%] rounded-2xl border border-white/8 bg-ink-600 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-mist">
+              <div className="max-w-[85%] rounded-2xl border border-line bg-ink-600 px-3.5 py-2.5 text-sm leading-relaxed text-mist">
                 {t.greeting}
               </div>
             </div>
@@ -96,7 +112,7 @@ export default function ChatWidget({ dict }) {
                   <button
                     key={s}
                     onClick={() => send(s)}
-                    className="rounded-full border border-iris-500/30 bg-iris-500/10 px-3 py-1.5 text-[12px] text-iris-300 transition-colors hover:bg-iris-500/20"
+                    className="rounded-full border border-iris-500/30 bg-iris-500/10 px-3 py-1.5 text-xs text-iris-300 transition-colors hover:bg-iris-500/20"
                   >
                     {s}
                   </button>
@@ -107,8 +123,8 @@ export default function ChatWidget({ dict }) {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-[13.5px] leading-relaxed ${
-                    m.role === "user" ? "bg-iris-500 font-medium text-ink-900" : "border border-white/8 bg-ink-600 text-mist"
+                  className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                    m.role === "user" ? "bg-iris-500 font-medium text-ink-900" : "border border-line bg-ink-600 text-mist"
                   }`}
                 >
                   {m.content}
@@ -118,7 +134,7 @@ export default function ChatWidget({ dict }) {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="flex gap-1 rounded-2xl border border-white/8 bg-ink-600 px-4 py-3">
+                <div className="flex gap-1 rounded-2xl border border-line bg-ink-600 px-4 py-3">
                   {[0, 1, 2].map((i) => (
                     <span key={i} className="h-1.5 w-1.5 animate-bounce rounded-full bg-iris-400" style={{ animationDelay: `${i * 0.15}s` }} />
                   ))}
@@ -130,14 +146,18 @@ export default function ChatWidget({ dict }) {
           {/* Input */}
           <form
             onSubmit={(e) => { e.preventDefault(); send(); }}
-            className="flex items-center gap-2 border-t border-white/8 bg-white/[0.03] p-3"
+            className="flex items-center gap-2 border-t border-line bg-veil p-3"
           >
+            <label htmlFor="chat-input" className="sr-only">
+              {t.placeholder}
+            </label>
             <input
+              id="chat-input"
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t.placeholder}
-              className="flex-1 rounded-full border border-white/10 bg-ink-700 px-4 py-2.5 text-[13.5px] text-white placeholder:text-mist/40 focus:border-iris-500/50 focus:outline-none"
+              className="flex-1 rounded-full border border-line bg-ink-700 px-4 py-2.5 text-sm text-white placeholder:text-mist/60 focus:border-iris-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400"
             />
             <button
               type="submit"
@@ -145,7 +165,7 @@ export default function ChatWidget({ dict }) {
               aria-label="Send"
               className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-iris-500 text-ink-900 transition-colors hover:bg-iris-400 disabled:opacity-40"
             >
-              <ArrowUp size={18} />
+              <ArrowUp size={18} aria-hidden />
             </button>
           </form>
         </div>

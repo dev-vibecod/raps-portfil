@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, Mail, MapPin } from "lucide-react";
 import CountUp from "./CountUp";
 
@@ -11,89 +8,136 @@ const stack = [
   { k: "Data / ML", v: "Pipelines · MLOps" },
   { k: "Cloud", v: "GCP · AWS" },
 ];
-const ease = [0.22, 1, 0.36, 1];
 
+// The entrance was seven framer-motion nodes with staggered delays. As CSS
+// `animation-delay` it is identical on screen, needs no library, and lets this
+// whole component stay on the server — only the counters ship as JS now.
 export default function Hero({ lang, dict, profile }) {
   const t = dict.hero;
+  const stats = [
+    { v: "3+", k: t.stats.years },
+    { v: "20+", k: t.stats.projects },
+    { v: "~2,000", k: t.stats.users },
+  ];
+
   return (
     <section className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-16 sm:px-8">
-      {/* Floating gradient orbs */}
-      <div aria-hidden className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-iris-500/20 blur-[100px] animate-float" />
-      <div aria-hidden className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 rounded-full bg-iris-400/15 blur-[120px] animate-float" style={{ animationDelay: "1.5s" }} />
+      {/* Ambient wash. A radial-gradient renders like a blurred circle but
+          skips the blur pass — the previous pair of orbs put ~1.9 megapixels
+          of filter work directly in the LCP path. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(28rem 24rem at 8% 22%, rgba(139,147,255,0.13), transparent 70%), radial-gradient(30rem 26rem at 96% 38%, rgba(169,176,255,0.10), transparent 70%)",
+        }}
+      />
 
-      <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="eyebrow flex items-center gap-2">
+          <p className="eyebrow rise flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-iris-400 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-iris-400" />
             </span>
             {dict.common.available}
-          </motion.p>
+          </p>
 
-          <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.05, ease }} className="mt-5 text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            {t.titleA} <span className="font-serif italic font-light text-gradient">{t.titleAccent}</span> {t.titleB}
+          <h1
+            className="rise mt-5 text-4xl font-semibold text-white sm:text-6xl lg:text-7xl"
+            style={{ animationDelay: "0.05s" }}
+          >
+            {t.titleA} <span className="text-iris-400">{t.titleAccent}</span> {t.titleB}
             <span className="text-iris-500">.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.12, ease }} className="mt-6 max-w-xl text-base leading-relaxed text-mist/75 sm:text-lg">
+          <p
+            className="rise mt-6 max-w-xl text-base leading-relaxed text-mist/75 sm:text-lg"
+            style={{ animationDelay: "0.12s" }}
+          >
             {profile.tagline}
-          </motion.p>
+          </p>
 
-          <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.18, ease }} className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href={`/${lang}/projects`} className="group inline-flex items-center gap-2 rounded-full bg-iris-500 px-5 py-3 text-sm font-medium text-ink-900 transition-colors hover:bg-iris-400">
-              {t.ctaPrimary}
+          {/* Note the dictionary keys read backwards here, deliberately:
+              `ctaSecondary` ("Mulai proyek") now takes the filled button and
+              `ctaPrimary` ("Lihat proyek") the outline. The filled button used
+              to point at the project grid — the highest-intent moment on the
+              page led away from the only action that turns a visitor into work.
+              Keys are left alone because renaming them means touching both
+              dictionaries for no user-visible gain. */}
+          <div className="rise mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "0.18s" }}>
+            <Link
+              href={`/${lang}/contact`}
+              className="group inline-flex items-center gap-2 rounded-full bg-iris-500 px-5 py-3 text-sm font-medium text-ink-900 transition-colors hover:bg-iris-400"
+            >
+              {t.ctaSecondary}
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link href={`/${lang}/contact`} className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-white/5">
-              {t.ctaSecondary}
+            <Link
+              href={`/${lang}/projects`}
+              className="inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil"
+            >
+              {t.ctaPrimary}
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.28 }} className="mt-8 flex items-center gap-4 text-mist/60">
-            <span className="inline-flex items-center gap-1.5 text-sm"><MapPin size={15} /> {profile.location}</span>
-            <span className="h-4 w-px bg-white/15" />
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-iris-400" aria-label="LinkedIn"><Linkedin size={18} /></a>
-            <a href={`mailto:${profile.email}`} className="transition-colors hover:text-iris-400" aria-label="Email"><Mail size={18} /></a>
-          </motion.div>
+          <div className="rise mt-8 flex items-center gap-4 text-mist/60" style={{ animationDelay: "0.26s" }}>
+            <span className="inline-flex items-center gap-1.5 text-sm">
+              <MapPin size={15} aria-hidden /> {profile.location}
+            </span>
+            <span aria-hidden className="h-4 w-px bg-line-strong" />
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-iris-400" aria-label="LinkedIn">
+              <Linkedin size={18} aria-hidden />
+            </a>
+            <a href={`mailto:${profile.email}`} className="transition-colors hover:text-iris-400" aria-label="Email">
+              <Mail size={18} aria-hidden />
+            </a>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.36 }} className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
-            {[
-              { v: "3+", k: t.stats.years },
-              { v: "20+", k: t.stats.projects },
-              { v: "~2,000", k: t.stats.users },
-            ].map((s) => (
-              <div key={s.k}>
-                <CountUp value={s.v} className="text-2xl font-bold text-gradient sm:text-3xl" />
-                <p className="mt-0.5 text-[11px] uppercase tracking-wider text-mist/50">{s.k}</p>
+          {/* Figures are mono and tabular — the site treats numbers as machine
+              output and prose as human writing. */}
+          <dl className="rise mt-10 flex flex-wrap gap-x-10 gap-y-5 border-t border-line-soft pt-6" style={{ animationDelay: "0.34s" }}>
+            {stats.map((s) => (
+              // `flex-col-reverse` keeps the figure above its label visually
+              // while the markup stays <dt> then <dd>, which is what the <dl>
+              // content model requires.
+              <div key={s.k} className="flex flex-col-reverse">
+                <dt className="mt-1 font-mono text-2xs uppercase tracking-label text-mist/65">{s.k}</dt>
+                <dd>
+                  <CountUp value={s.v} className="meta block text-2xl font-semibold text-white sm:text-3xl" />
+                </dd>
               </div>
             ))}
-          </motion.div>
+          </dl>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8, delay: 0.2, ease }} className="glass relative rounded-3xl p-5 shadow-card sm:p-6">
-          <div className="flex items-center justify-between">
+        {/* Solid surface, not glass: this panel sits in the content flow, so it
+            has no business carrying a backdrop-filter. */}
+        <div className="surface rise rounded-3xl p-6 shadow-card" style={{ animationDelay: "0.2s" }}>
+          <div className="flex items-center justify-between gap-3">
             <p className="eyebrow">Skill stack</p>
-            <span className="rounded-full bg-iris-500/15 px-2.5 py-1 text-[11px] font-medium text-iris-400 ring-1 ring-iris-500/30">3+ yrs · 20+ projects</span>
+            <span className="meta rounded-full bg-iris-500/15 px-2.5 py-1 text-2xs font-medium text-iris-300 ring-1 ring-iris-500/30">
+              3+ yrs · 20+ projects
+            </span>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {stack.map((s, i) => (
-              <motion.div key={s.k} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }} className="glass-hover rounded-2xl bg-white/[0.03] p-4">
-                <p className="text-xs text-mist/55">{s.k}</p>
-                <p className="mt-1 text-sm font-medium text-white">{s.v}</p>
-              </motion.div>
+
+          {/* Hairline rows instead of four nested cards: fewer nodes, and the
+              label/value alignment reads as a spec sheet. */}
+          <dl className="mt-5 divide-y divide-line-soft border-y border-line-soft">
+            {stack.map((s) => (
+              <div key={s.k} className="flex items-baseline justify-between gap-4 py-3">
+                <dt className="font-mono text-2xs uppercase tracking-label text-mist/70">{s.k}</dt>
+                <dd className="text-sm font-medium text-white">{s.v}</dd>
+              </div>
             ))}
+          </dl>
+
+          <div className="mt-5 flex items-center justify-between">
+            <span className="font-mono text-2xs uppercase tracking-label text-mist/65">End-to-end delivery</span>
+            <span className="font-mono text-2xs font-semibold uppercase tracking-label text-iris-400">Solo</span>
           </div>
-          <div className="mt-4 flex items-center justify-between rounded-2xl bg-white/[0.03] px-4 py-3">
-            <span className="text-xs text-mist/55">End-to-end delivery</span>
-            <div className="flex items-end gap-[3px]">
-              {[10, 18, 8, 22, 14, 26, 12, 20, 9, 24, 16].map((h, i) => (
-                <motion.span key={i} className="w-[3px] rounded-full bg-gradient-to-t from-iris-600 to-iris-400" initial={{ height: 4 }} animate={{ height: [4, h, 6, h * 0.7, 4] }} transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.12, ease: "easeInOut" }} />
-              ))}
-            </div>
-            <span className="text-xs font-semibold text-iris-400">solo</span>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

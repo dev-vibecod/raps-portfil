@@ -6,11 +6,15 @@ export default function Footer({ lang, dict }) {
   const links = [
     { href: `/${lang}/services`, label: dict.nav.services },
     { href: `/${lang}/projects`, label: dict.nav.projects },
+    { href: `/${lang}/blog`, label: dict.nav.blog },
     { href: `/${lang}/about`, label: dict.nav.about },
     { href: `/${lang}/contact`, label: dict.nav.contact },
   ];
+  // Was hardcoded to 2026 — a stale copyright year on a portfolio is exactly
+  // the kind of detail a prospective client notices.
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-white/8 px-5 py-10 sm:px-8 no-print">
+    <footer className="border-t border-line px-5 py-10 sm:px-8 no-print">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-semibold text-white">{profile.name}</p>
@@ -24,7 +28,9 @@ export default function Footer({ lang, dict }) {
           ))}
         </nav>
       </div>
-      <p className="mx-auto mt-6 max-w-6xl text-xs text-mist/55">© 2026 {profile.name}. {dict.footer.rights}</p>
+      <p className="mx-auto mt-6 max-w-6xl text-xs text-mist/70">
+        © <span className="meta">{year}</span> {profile.name}. {dict.footer.rights}
+      </p>
     </footer>
   );
 }
