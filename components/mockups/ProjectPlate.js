@@ -86,12 +86,12 @@ function ChatBody({ data }) {
   return (
     <div className="flex h-full flex-col justify-center gap-1.5">
       {ask && (
-        <span className="max-w-[78%] self-end rounded-lg rounded-br-sm bg-iris-500 px-2 py-1 text-2xs font-medium leading-snug text-ink-900">
+        <span className="max-w-[78%] self-end rounded-lg rounded-br-sm bg-iris-500 px-2 py-1 text-xs font-medium leading-snug text-ink-900">
           {clip(ask.text, 44)}
         </span>
       )}
       {reply && (
-        <span className="max-w-[86%] rounded-lg rounded-bl-sm border border-line bg-ink-800 px-2 py-1 text-2xs leading-snug text-mist/80">
+        <span className="max-w-[86%] rounded-lg rounded-bl-sm border border-line bg-ink-800 px-2 py-1 text-xs leading-snug text-mist/80">
           {clip(reply.text, 58)}
         </span>
       )}
@@ -104,7 +104,7 @@ function QueryBody({ data }) {
   const rows = data.result?.rows || [];
   return (
     <div className="flex h-full flex-col justify-center gap-2">
-      <span className="truncate rounded-md border border-line bg-ink-800 px-2 py-1 text-2xs text-white">
+      <span className="truncate rounded-md border border-line bg-ink-800 px-2 py-1 text-xs text-white">
         {clip(data.query, 46)}
       </span>
       {rows.length > 0 && (

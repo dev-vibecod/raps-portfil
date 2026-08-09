@@ -39,26 +39,30 @@ export default function HomePage({ params }) {
           grid, and those two sections are structurally identical. This band is
           what separates them. It goes on the block with no cards inside it, so
           nothing collides with the background change. */}
-      <div className="border-y border-line bg-ink-800">
+      <div className="band">
         <TechIndex title={dict.home.tech.title} />
       </div>
 
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />
 
-      {/* About teaser */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-        <Reveal>
-          <div className="surface flex flex-col items-start justify-between gap-6 rounded-3xl p-8 sm:flex-row sm:items-center sm:p-10">
-            <div>
-              <p className="eyebrow">{dict.nav.about}</p>
-              <h2 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">{dict.home.aboutTeaser.title}</h2>
+      {/* About teaser — a hairline, not a card. Raising surface contrast only
+          works if there are fewer surfaces; sixteen visible grey boxes would be
+          worse than sixteen invisible ones. */}
+      <section className="py-16 md:py-20">
+        <div className="shell">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-6 border-t border-line-soft pt-10 sm:flex-row sm:items-center">
+              <div>
+                <p className="eyebrow">{dict.nav.about}</p>
+                <h2 className="mt-3 max-w-xl text-2xl font-semibold text-white sm:text-3xl">{dict.home.aboutTeaser.title}</h2>
+              </div>
+              <Link href={`/${lang}/about`} className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
+                {dict.home.aboutTeaser.cta}
+                <ArrowUpRight size={15} aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
-            <Link href={`/${lang}/about`} className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
-              {dict.home.aboutTeaser.cta}
-              <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
 
       <Contact lang={lang} dict={dict} profile={c.profile} copy={dict.home.contact} />

@@ -64,7 +64,7 @@ export default function SectionHeading({
       </Reveal>
       {sub && (
         <Reveal delay={0.1}>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-mist/70">{sub}</p>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mist/70">{sub}</p>
         </Reveal>
       )}
       {trailing && <Reveal delay={0.15}>{trailing}</Reveal>}

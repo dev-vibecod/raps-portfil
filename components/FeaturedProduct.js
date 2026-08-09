@@ -51,7 +51,7 @@ export default function FeaturedProduct({ lang, dict, project }) {
               {project.metrics.map((m) => (
                 <div key={m.label} className="flex flex-col-reverse">
                   <dt className="font-mono text-2xs uppercase tracking-label text-mist/65">{m.label}</dt>
-                  <dd className="meta text-xl font-semibold text-white">{m.value}</dd>
+                  <dd className="meta text-3xl font-semibold text-white sm:text-4xl">{m.value}</dd>
                 </div>
               ))}
             </dl>

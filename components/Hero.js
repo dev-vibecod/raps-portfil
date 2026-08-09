@@ -105,7 +105,7 @@ export default function Hero({ lang, dict, profile }) {
               <div key={s.k} className="flex flex-col-reverse">
                 <dt className="mt-1 font-mono text-2xs uppercase tracking-label text-mist/65">{s.k}</dt>
                 <dd>
-                  <CountUp value={s.v} className="meta block text-2xl font-semibold text-white sm:text-3xl" />
+                  <CountUp value={s.v} className="meta block text-3xl font-semibold text-white sm:text-4xl" />
                 </dd>
               </div>
             ))}

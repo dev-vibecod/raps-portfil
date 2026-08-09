@@ -12,7 +12,8 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
   const sec = dict.sections.services;
 
   return (
-    <section id="services" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
+    <section id="services" className="py-28 md:py-40">
+      <div className="shell">
       {summary ? (
         <SectionHeading index={index} eyebrow={sec.eyebrow} title={dict.home.servicesTeaser.title} sub={dict.home.servicesTeaser.sub} />
       ) : (
@@ -189,6 +190,7 @@ export default function Services({ lang, dict, summary = false, index = "02" }) 
           </div>
         </>
       )}
+      </div>
     </section>
   );
 }

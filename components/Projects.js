@@ -79,21 +79,23 @@ export default function Projects({ lang, dict, projects, heading = true, limit, 
   const shown = limit ? caseStudies.slice(0, limit) : caseStudies;
   const s = dict.sections.projects;
   return (
-    <section id="projects" className={`mx-auto max-w-6xl px-5 sm:px-8 ${flush ? "pb-24 md:pb-32" : "py-24 md:py-32"}`}>
+    <section id="projects" className={flush ? "pb-24 md:pb-32" : "py-28 md:py-40"}>
+      <div className="shell shell-wide">
       {heading && <SectionHeading index={index} eyebrow={s.eyebrow} title={s.title} accent={s.accent} sub={s.sub} />}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((p, i) => (
           <Card key={p.slug} project={p} lang={lang} dict={dict} delay={(i % 3) * 0.06} />
         ))}
       </div>
-      {limit && caseStudies.length > limit && (
-        <div className="mt-10 text-center">
-          <Link href={`/${lang}/projects`} className="group inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
-            {dict.common.viewAll}
-            <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-        </div>
-      )}
+        {limit && caseStudies.length > limit && (
+          <div className="mt-10 text-center">
+            <Link href={`/${lang}/projects`} className="group inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-white transition-colors hover:border-iris-500/50 hover:bg-veil-strong">
+              {dict.common.viewAll}
+              <ArrowUpRight size={15} aria-hidden className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

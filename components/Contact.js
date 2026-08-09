@@ -14,12 +14,12 @@ export default function Contact({ lang, dict, profile, copy, withForm = false })
   ];
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
-      <Reveal>
-        {/* The decorative radial-gradient that used to sit here was `-z-10`
-            behind an opaque `.surface` — it painted nothing. Deleted rather
-            than rescued: the panel does not need it. */}
-        <div className="surface relative overflow-hidden rounded-3xl p-8 shadow-card sm:p-12">
+    // The closing chapter takes a band rather than a card: the band edge is the
+    // separator, so the panel no longer needs to draw its own box. One fewer
+    // `.surface` on a page that had sixteen.
+    <section id="contact" className="band py-24 md:py-32">
+      <div className="shell">
+        <Reveal>
           <div className={withForm ? "grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center" : "text-center"}>
             <div className={withForm ? "" : "mx-auto max-w-2xl"}>
               <p className="eyebrow">{dict.nav.contact}</p>
@@ -59,8 +59,8 @@ export default function Contact({ lang, dict, profile, copy, withForm = false })
 
             {withForm && <ContactForm dict={dict} phone={profile.phoneE164} email={profile.email} />}
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

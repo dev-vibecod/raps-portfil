@@ -67,8 +67,14 @@ body {
   }
 
   .surface {
-    background: theme("colors.ink.800");
+    background: theme("colors.surface.card");
     border: 1px solid theme("colors.line.DEFAULT");
+  }
+
+  /* The one climax element per page. */
+  .surface-raised {
+    background: theme("colors.surface.raised");
+    border: 1px solid theme("colors.line.strong");
   }
 
   /* Hover affordance for interactive surfaces. Transform + border-color only. */
@@ -77,8 +83,42 @@ body {
   }
   .surface-hover:hover {
     border-color: rgba(139, 147, 255, 0.4);
-    background-color: theme("colors.ink.700");
+    background-color: theme("colors.surface.raised");
     transform: translateY(-3px);
+  }
+
+  /* ---------------------------------------------------------------------
+     Measure.
+
+     Every section on every page used the same `max-w-6xl`, so the site never
+     changed width and never went full-bleed — permanent dead margins down
+     both sides of every page, and no way to signal that a new chapter had
+     started. The max-width now lives on an inner `.shell`, which leaves the
+     <section> free to carry a full-bleed background.
+     --------------------------------------------------------------------- */
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  .shell-wide {
+    max-width: 88rem;
+  }
+  .shell-narrow {
+    max-width: 46rem;
+  }
+
+  /* A chapter background. The band edge is the separator, so a banded section
+     needs no extra outer margin. */
+  .band {
+    background: theme("colors.surface.band");
+    border-block: 1px solid theme("colors.line.soft");
   }
 
   /* ---------------------------------------------------------------------
