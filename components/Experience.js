@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import CareerTimeline from "./CareerTimeline";
 
 function TimelineItem({ item, last }) {
   return (
@@ -38,7 +39,17 @@ export default function Experience({ dict, experience, earlierExperience, earlie
   return (
     <section id="experience" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32">
       <SectionHeading index={index} eyebrow={s.eyebrow} title={s.title} accent={s.accent} />
-      <div className="grid gap-12 lg:grid-cols-[1.4fr_0.6fr]">
+
+      {/* The chart adds no information — every bar is drawn from the same
+          `period` string printed in the list below. What it adds is the
+          relationship between them: freelancing has run continuously since
+          Jun 2022 underneath every employed role, and two of those overlapped.
+          A vertical list cannot show that. */}
+      <Reveal>
+        <CareerTimeline roles={[...experience, ...earlierExperience]} label={s.eyebrow} />
+      </Reveal>
+
+      <div className="mt-14 grid gap-12 lg:grid-cols-[1.4fr_0.6fr]">
         <div>
           <Reveal>
             <div>
