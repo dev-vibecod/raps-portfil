@@ -22,13 +22,27 @@ export default function HomePage({ params }) {
     <main>
       <JsonLd lang={lang} baseUrl={baseUrl} />
       <Hero lang={lang} dict={dict} profile={c.profile} />
-      <TechIndex title={dict.home.tech.title} />
-      <Services lang={lang} dict={dict} summary index="01" />
+
+      {/* The one real screenshot on the site sits here, ~900px down, instead of
+          ~2,600px. Previously a visitor left the hero and scrolled roughly two
+          viewports whose only non-text pixels were six 44px grey icon tiles. */}
       {featured && (
-        <section className="mx-auto max-w-6xl px-5 pt-16 sm:px-8 md:pt-20">
+        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
           <FeaturedProduct lang={lang} dict={dict} project={featured} />
         </section>
       )}
+
+      <Services lang={lang} dict={dict} summary index="01" />
+
+      {/* The site's only full-bleed moment, and it is load-bearing: promoting
+          FeaturedProduct puts the Services grid directly against the Projects
+          grid, and those two sections are structurally identical. This band is
+          what separates them. It goes on the block with no cards inside it, so
+          nothing collides with the background change. */}
+      <div className="border-y border-line bg-ink-800">
+        <TechIndex title={dict.home.tech.title} />
+      </div>
+
       <Projects lang={lang} dict={dict} projects={c.projects} limit={6} index="02" />
 
       {/* About teaser */}

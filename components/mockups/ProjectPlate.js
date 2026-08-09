@@ -60,7 +60,7 @@ function Glyph({ type }) {
 export default function ProjectPlate({ mockup }) {
   const type = ARCHETYPE[mockup.type] ? mockup.type : "dashboard";
   return (
-    <div className="flex aspect-[16/10] w-full flex-col bg-ink-700">
+    <div className="flex aspect-[16/10] w-full flex-col bg-ink-900">
       {/* Address strip — reads as "this is a shipped product" without
           rendering an entire fake browser. */}
       <div className="flex items-center gap-2 border-b border-line-soft px-3 py-2">

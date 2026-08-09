@@ -31,7 +31,7 @@ export default function FeaturedProduct({ lang, dict, project }) {
               className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
             />
             <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-2xs font-medium uppercase tracking-label text-emerald-300 ring-1 ring-emerald-500/30">
-              <span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> {dict.featured.live}
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {dict.featured.live}
             </span>
           </div>
 

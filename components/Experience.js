@@ -5,9 +5,9 @@ function TimelineItem({ item, last }) {
   return (
     <div className="relative pl-8">
       {!last && <span className="absolute left-[5px] top-3 h-full w-px bg-line" />}
-      <span className={`absolute left-0 top-2 h-[11px] w-[11px] rounded-full ring-4 ring-ink-900 ${item.current ? "bg-iris-400" : "bg-line-strong"}`}>
-        {item.current && <span className="absolute inset-0 animate-ping rounded-full bg-iris-400/60" />}
-      </span>
+      {/* The accent fill already says "current"; the ping was a third idle
+          infinite animation in content saying the same thing again. */}
+      <span className={`absolute left-0 top-2 h-[11px] w-[11px] rounded-full ring-4 ring-ink-900 ${item.current ? "bg-iris-400" : "bg-line-strong"}`} />
       <div className="pb-10">
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h3 className="text-base font-semibold text-white">{item.role}</h3>

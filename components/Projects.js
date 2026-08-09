@@ -43,10 +43,39 @@ function Card({ project, lang, dict, delay }) {
   );
 }
 
+/**
+ * Round-robin the projects by mockup archetype, largest group first.
+ *
+ * In dossier order the three chat projects sat at indices 0, 3 and 6 — exactly
+ * the left column of a 3-up grid — so /projects rendered the same thumbnail
+ * three times down its left edge and read as placeholder art. Spreading here
+ * rather than reordering data/content.js keeps `allSlugs` (and with it the
+ * "Next:" chain and the sitemap) untouched, and it self-corrects when a tenth
+ * project is added instead of needing the order hand-maintained.
+ *
+ * With 4 dashboards / 3 chats / 1 query / 1 detection this yields
+ * dash, chat, query, detect, dash, chat, dash, chat, dash — no archetype is
+ * ever horizontally or vertically adjacent to itself at 3 columns.
+ */
+function spreadByArchetype(items) {
+  const groups = new Map();
+  for (const item of items) {
+    const key = projectDetails[item.slug]?.mockup?.type || "_";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  }
+  const buckets = [...groups.values()].sort((a, b) => b.length - a.length);
+  const out = [];
+  while (out.length < items.length) {
+    for (const bucket of buckets) if (bucket.length) out.push(bucket.shift());
+  }
+  return out;
+}
+
 // `projects` arrives already localized. `heading` toggles the section header;
 // `limit` shows a subset + a "view all" link (used on the home page).
 export default function Projects({ lang, dict, projects, heading = true, limit, index = "03", flush = false }) {
-  const caseStudies = projects.filter((p) => !p.featured);
+  const caseStudies = spreadByArchetype(projects.filter((p) => !p.featured));
   const shown = limit ? caseStudies.slice(0, limit) : caseStudies;
   const s = dict.sections.projects;
   return (
