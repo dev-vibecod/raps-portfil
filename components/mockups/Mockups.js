@@ -2,28 +2,13 @@
 // fixed design size inside <ScaledMockup>. All content is illustrative.
 import { ArrowUp, Search, Plus, ShieldCheck, BarChart3, Database, Camera, ScanLine, Video } from "lucide-react";
 
-const tone = {
-  good: "text-emerald-400",
-  warn: "text-amber-400",
-  bad: "text-rose-400",
-  acc: "text-iris-400",
-  mut: "text-mist/60",
-};
-const statusStyles = {
-  Open: "bg-amber-500/15 text-amber-300 ring-amber-500/25",
-  "In progress": "bg-iris-500/15 text-iris-300 ring-iris-500/25",
-  Resolved: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/25",
-  High: "bg-rose-500/15 text-rose-300 ring-rose-500/25",
-  Medium: "bg-amber-500/15 text-amber-300 ring-amber-500/25",
-  Low: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/25",
-  Active: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/25",
-  Pending: "bg-amber-500/15 text-amber-300 ring-amber-500/25",
-  Allow: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/25",
-  Deny: "bg-rose-500/15 text-rose-300 ring-rose-500/25",
-};
+// Palette lives in lib/mockupTone.js so ProjectPlate can share it — that is how
+// emerald/amber/rose reach the top-level pages instead of only the nine detail
+// pages.
+import { tone, statusStyles, STATUS_FALLBACK } from "@/lib/mockupTone";
 
 function StatusChip({ value }) {
-  const cls = statusStyles[value] || "bg-veil-strong text-mist ring-line-strong";
+  const cls = statusStyles[value] || STATUS_FALLBACK;
   return (
     <span className={`inline-block rounded-full px-2.5 py-0.5 text-[12px] font-medium ring-1 ${cls}`}>
       {value}
